@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-03-11T18:36:27.275030",
+  "accuracy": 0.85,
+  "report": {
+    "legitimate": {
+      "precision": 1.0,
+      "recall": 0.9090909090909091,
+      "f1-score": 0.9523809523809523,
+      "support": 11.0
+    },
+    "smishing": {
+      "precision": 0.25,
+      "recall": 1.0,
+      "f1-score": 0.4,
+      "support": 1.0
+    },
+    "spam": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1-score": 0.8571428571428571,
+      "support": 8.0
+    },
+    "accuracy": 0.85,
+    "macro avg": {
+      "precision": 0.75,
+      "recall": 0.8863636363636364,
+      "f1-score": 0.7365079365079366,
+      "support": 20.0
+    },
+    "weighted avg": {
+      "precision": 0.9625,
+      "recall": 0.85,
+      "f1-score": 0.8866666666666667,
+      "support": 20.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      10,
+      0,
+      1
+    ],
+    [
+      0,
+      6,
+      2
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "predictions": [
+    "spam",
+    "smishing",
+    "legitimate",
+    "legitimate",
+    "legitimate",
+    "spam",
+    "legitimate",
+    "spam",
+    "legitimate",
+    "spam",
+    "spam",
+    "legitimate",
+    "legitimate",
+    "smishing",
+    "legitimate",
+    "smishing",
+    "legitimate",
+    "spam",
+    "smishing",
+    "legitimate"
+  ],
+  "confidences": [
+    90,
+    95,
+    90,
+    95,
+    95,
+    90,
+    90,
+    90,
+    80,
+    90,
+    90,
+    90,
+    90,
+    98,
+    95,
+    95,
+    90,
+    90,
+    95,
+    90
+  ],
+  "true_labels": [
+    "spam",
+    "spam",
+    "legitimate",
+    "legitimate",
+    "legitimate",
+    "spam",
+    "legitimate",
+    "spam",
+    "legitimate",
+    "spam",
+    "spam",
+    "legitimate",
+    "legitimate",
+    "smishing",
+    "legitimate",
+    "legitimate",
+    "legitimate",
+    "spam",
+    "spam",
+    "legitimate"
+  ]
+}
