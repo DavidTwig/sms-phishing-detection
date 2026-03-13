@@ -143,10 +143,10 @@ if __name__ == "__main__":
     
     # Run evaluation on a small sample first (to test)
     print("\n" + "=" * 60)
-    print("RUNNING EVALUATION (sample of 20 messages)")
+    print("RUNNING EVALUATION (all 1,200 messages)")
     print("=" * 60)
     
-    results = evaluate_detector(detector, df, sample_size=20)
+    results = evaluate_detector(detector, df, sample_size=None)
     print_results(results)
     
     # Save results
