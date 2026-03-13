@@ -24,7 +24,7 @@ class SMSPhishingDetector:
         if not api_key:
             raise ValueError("GROQ_API_KEY not found in .env file")
         self.client = Groq(api_key=api_key)
-        self.model = "llama-3.1-8b-instant"  # Changed from llama-3.3-70b-versatile for higher rate limits
+        self.model = "llama-3.3-70b-versatile"
     
     def detect(self, sms_text: str) -> dict:
         """
