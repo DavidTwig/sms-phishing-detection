@@ -1,0 +1,434 @@
+======================================================================
+SMS PHISHING DETECTION - ERROR ANALYSIS
+======================================================================
+Dataset rows: 1200
+Predictions:  1200
+Overall accuracy: 82.5%
+Correct: 990 | Misclassified: 210
+======================================================================
+PER-CLASS BREAKDOWN
+======================================================================
+
+  LEGITIMATE (622 total, 528 correct = 84.9%)
+    Errors: 69->smishing, 25->spam
+
+  SPAM (319 total, 282 correct = 88.4%)
+    Errors: 29->smishing, 8->legitimate
+
+  SMISHING (259 total, 180 correct = 69.5%)
+    Errors: 79->spam
+======================================================================
+
+CONFUSION TYPE RANKING (total misclassified: 210)
+======================================================================
+  smishing -> spam: 79 messages (30.5% of that class)
+  legitimate -> smishing: 69 messages (11.1% of that class)
+  spam -> smishing: 29 messages (9.1% of that class)
+  legitimate -> spam: 25 messages (4.0% of that class)
+  spam -> legitimate: 8 messages (2.5% of that class)
+----------------------------------------------------------------------
+DETAILED ANALYSIS: SMISHING -> SPAM (79 messages)
+----------------------------------------------------------------------
+
+  Contains URL: 67/79 (85%)
+  Dataset URL flag (if_URL=1): 1110111111010110111101101011111111111110110111111111110011011111111111111110111/79
+  Has urgency language: 3/79 (4%)
+  Has brand/entity names: 21/79 (27%)
+  Has money/prize language: 33/79 (42%)
+  Contains phone number: 1001010000101001000010010100000000000001010000000000001100100000000000000001000/79
+  Contains email: 0/79
+
+  Message length: mean=155, min=99, max=310
+
+  Most common urgency words: [('urgent', 2), ('account', 1)]
+  Most common brand mentions: [('ee', 19), ('bt', 1), ('irs', 1)]
+  Most common money words: [('cash', 13), ('win', 11), ('£', 9), ('free', 7), ('claim', 3)]
+
+  --- Sample messages (15 of 79) ---
+
+  [1] TRUE: smishing | PREDICTED: spam
+      SMS: <Forwarded from 88877>FREE entry into our £250 weekly comp just send the word ENTER to 88877 NOW. 18 T&C www.textcomp.com
+      Signals: Brands: ['ee'] | Money: ['free', '£']
+
+  [2] TRUE: smishing | PREDICTED: spam
+      SMS: FREE entry into our £250 weekly competition just text the word WIN to 80086 NOW. 18 T&C www.txttowin.co.uk
+      Signals: Brands: ['ee'] | Money: ['win', 'free', '£']
+
+  [3] TRUE: smishing | PREDICTED: spam
+      SMS: Derrick discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+
+  [4] TRUE: smishing | PREDICTED: spam
+      SMS: +123 Congratulations - in this week's competition draw u have won the £1450 prize to claim just call 09050002311 b4280703. T&Cs/stop SMS 08718727868. Over 18 only 150ppm
+      Signals: Brands: ['ee'] | Money: ['prize', 'claim', '£']
+
+  [5] TRUE: smishing | PREDICTED: spam
+      SMS: kengleang top financial expert shares Insider Secrets of what works in The Markets & How to Invest https://tx.vc/r/2OXiY
+ Optout
+ https://tx.vc/o/8d122
+      Signals: Money: ['invest']
+
+  [6] TRUE: smishing | PREDICTED: spam
+      SMS: FREE entry into our £250 weekly comp just send the word ENTER to 84128 NOW. 18 T&C www.textcomp.com cust care 08712405020.
+      Signals: Brands: ['ee'] | Money: ['free', '£']
+
+  [7] TRUE: smishing | PREDICTED: spam
+      SMS: Kim discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+
+  [8] TRUE: smishing | PREDICTED: spam
+      SMS: [emailÂ protected] / no subject / Are you interested in discreet affair? Open My Link I'll show you everything I'm live On My Website it's free join... https://qi.lv/z3i.
+      Signals: Brands: ['ee'] | Money: ['free']
+
+  [9] TRUE: smishing | PREDICTED: spam
+      SMS: Alex free event reveals how to create cash flow using somebody else's property and money! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122
+      Signals: Brands: ['ee'] | Money: ['cash', 'free']
+
+  [10] TRUE: smishing | PREDICTED: spam
+      SMS: ftght here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122
+      Signals: Money: ['win', 'cash']
+
+  [11] TRUE: smishing | PREDICTED: spam
+      SMS: Dear Matthew please call 09063440451 from a landline, your complimentary 4*Lux Tenerife holiday or £1000 CASH await collection. ppm150 SAE T&Cs Box334 SK38XH.
+      Signals: Money: ['cash', '£']
+
+  [12] TRUE: smishing | PREDICTED: spam
+      SMS: Hi babe its Chloe, how r u? I was smashed on saturday night, it was great! How was your weekend? U been missing me? SP visionsms.com Text stop to stop 150p/text
+      Signals: Brands: ['ee']
+
+  [13] TRUE: smishing | PREDICTED: spam
+      SMS: We tried to contact you re your reply to our offer of a Video Handset? 750 anytime any networks mins? UNLIMITED TEXT? Camcorder? Reply or call 08000930705 NOW
+      Signals: Money: ['offer']
+
+  [14] TRUE: smishing | PREDICTED: spam
+      SMS: Start your craze adventure today. Register and get your ultimate welcome package https://tx.vc/r/3wc2K/1M94C8/7SnnDn5 Optout: https://tx.vc/o/b5618
+
+  [15] TRUE: smishing | PREDICTED: spam
+      SMS: Hello, I'm Michael Hendrix from OPN Architects Inc, We found your contact on Indeed employment resume. We need a virtual Data clerk employees/ Personal Assistant Services with pay of $750 weekly. For more details click the link below to read and appl...
+      Signals: Brands: ['ee'] | Money: ['$']
+
+----------------------------------------------------------------------
+DETAILED ANALYSIS: LEGITIMATE -> SMISHING (69 messages)
+----------------------------------------------------------------------
+
+  Contains URL: 44/69 (64%)
+  Dataset URL flag (if_URL=1): 110111001110011101111110110000111010000101000000010110111111111111111/69
+  Has urgency language: 19/69 (28%)
+  Has brand/entity names: 26/69 (38%)
+  Has money/prize language: 7/69 (10%)
+  Contains phone number: 0/69
+  Contains email: 0/69
+
+  Message length: mean=158, min=16, max=462
+
+  Most common urgency words: [('account', 7), ('confirm', 6), ('alert', 3), ('expire', 3), ('verify', 2)]
+  Most common brand mentions: [('ee', 16), ('bank', 7), ('amazon', 4), ('chase', 2), ('irs', 1)]
+  Most common money words: [('$', 3), ('discount', 1), ('cash', 1), ('win', 1), ('bet', 1)]
+
+  --- Sample messages (15 of 69) ---
+
+  [1] TRUE: legitimate | PREDICTED: smishing
+      SMS: Shipped: Your Amazon packagewith Old Spice High EnduranceDeodorant, Pure Sport, 3.0 oz,5... will be delivered Tue, May24. Track at http://a.co/4SJitSA
+      Signals: Brands: ['amazon']
+
+  [2] TRUE: legitimate | PREDICTED: smishing
+      SMS: Arriving Today: Your Amazon package with Old Spice High Endurance Deodorant,PureSport, 3.0 oz,.. will be delivered by 8PM. Track at http://a.co/5mRhmyv
+      Signals: Brands: ['amazon']
+
+  [3] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Use [64547008] as One Time Password to login to your Swiggy Account pgLJ0BdTNB3
+
+      Signals: Urgency: ['account']
+
+  [4] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Alert! After successful mobile no. verification, Kotak Bank App has been activated for CRN xx8418 on CPH2139. If not you, REPORT FRAUD on kotak.com/fraud
+
+      Signals: Urgency: ['alert'] | Brands: ['bank', 'ee']
+
+  [5] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Your WhatsApp code: 957-128
+You can also tap on this link to verify your phone: v.whatsapp.com/957128
+Don't share this code with others
+
+      Signals: Urgency: ['verify']
+
+  [6] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+100% of daily 1.50 GB data quota exhausted as on 28-Apr-22 19:30. Jio Number : 6280368198 Daily high speed data quota will be restored on 29-Apr-22 01:19.
+To know where you have consumed your data quota, click http://tiny1.jio.com/HelpfulTips
+
+      Signals: Brands: ['ee']
+
+  [7] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Return Request Accepted: Your return request for boAt Ba... from your order with order ID OD222900438837406000 has been accepted by the seller. A Wishmaster will pick up the originally delivered item by Saturday, Sep 25, 2021. The refund will be in...
+      Signals: Brands: ['ee']
+
+  [8] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Thank You for using McDelivery Service, your One Time Password is 5005. This password expires in 30 minutes.
+
+      Signals: Urgency: ['expire']
+
+  [9] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+We hope you enjoyed your meal from KFC Janakpuri (W). We would like to hear about your experience. Please leave your feedback at https://tinyurl.com/2p96khfd
+
+      Signals: Brands: ['ee']
+
+  [10] TRUE: legitimate | PREDICTED: smishing
+      SMS: See you in 2 hours! Happy Customer Advisory's webinaron customer service 101 startsat 1 pm ET.
+Join here:
+zoom.com/meeting/1372y424y
+      Signals: Brands: ['ee']
+
+  [11] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Thanks for your recent visit at KFC IBC Surat. Please share your feedback at https://tinyurl.com/mtmacsa3 & avail 10% discount on next visit. T&C
+
+      Signals: Brands: ['ee'] | Money: ['discount']
+
+  [12] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Dear Customer, registration for Google Pay has started for ICICI Bank. If it was not you, report to your bank. Do not share card details/OTP/CVV with anyone.
+
+      Signals: Brands: ['bank']
+
+  [13] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Dear Customer, Reference MCWA00020056002 for Cash withdrawal of Rs 15000 from Account 370505000344 is initiated through ICICI Bank INSTA Banking. Please quote this reference number to the Cash Teller.
+
+      Signals: Urgency: ['account'] | Brands: ['bank'] | Money: ['cash']
+
+  [14] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Dear Customer, payment of Rs 179.00 for Amazon for Standing Instruction VsnLR2EGj2 could not be processed successfully on your ICICI Bank Debit Card 8578. You can manage your Standing Instructions by visiting www.icicibank.com-Cards-Debit Cards-Sta...
+      Signals: Brands: ['bank', 'amazon']
+
+  [15] TRUE: legitimate | PREDICTED: smishing
+      SMS: 
+Sorry, your Walmart delivery is delayed. It's now estimated to arrive Wed, Aug 21. Track: https://w-mt.co/g/cfEyvB. Reply HELP for info; STOP to opt out
+
+
+----------------------------------------------------------------------
+DETAILED ANALYSIS: SPAM -> SMISHING (29 messages)
+----------------------------------------------------------------------
+
+  Contains URL: 29/29 (100%)
+  Dataset URL flag (if_URL=1): 11111111111111111111111111111/29
+  Has urgency language: 0/29 (0%)
+  Has brand/entity names: 1/29 (3%)
+  Has money/prize language: 7/29 (24%)
+  Contains phone number: 10000000000000/29
+  Contains email: 0/29
+
+  Message length: mean=127, min=40, max=333
+  Most common brand mentions: [('ee', 1)]
+  Most common money words: [('loan', 3), ('win', 1), ('discount', 1), ('credit', 1), ('free', 1)]
+
+  --- Sample messages (15 of 29) ---
+
+  [1] TRUE: spam | PREDICTED: smishing
+      SMS: LEMON NADE You have a new notification: https://iaqwqtii.com/6hTbr Reply STOP to optout
+
+  [2] TRUE: spam | PREDICTED: smishing
+      SMS: We've upgraded your coupon, it's the last chance to win your cart. Code: 55DIS Order here >> https://sprch.co/gjgUkO - Balardi Reply STOP to opt out 
+      Signals: Money: ['win']
+
+  [3] TRUE: spam | PREDICTED: smishing
+      SMS: Kelvin, Your guarantor was not accepted. Forward this msg to your new guarantor https://tx.vc/r/2RPQk/ 1Plus1
+
+  [4] TRUE: spam | PREDICTED: smishing
+      SMS: Michal, Forward this text message to your guarantor. Click here to sign as guarantor for Michal. https://tx.vc/r/2VqAm/ 1Plus1 Loans
+      Signals: Money: ['loan']
+
+  [5] TRUE: spam | PREDICTED: smishing
+      SMS: andrew, Forward this text message to your guarantor. Click here to sign as guarantor for andrew. https://tx.vc/r/2ZrlW/ 1Plus1 Loans
+      Signals: Money: ['loan']
+
+  [6] TRUE: spam | PREDICTED: smishing
+      SMS: test Optout: Visit https://tx.vc/o/e2340
+
+  [7] TRUE: spam | PREDICTED: smishing
+      SMS: pple.com/us/app/ring4/id594763296   android:   https://play.google.com/store/apps/details?id=com.ring4.app
+
+  [8] TRUE: spam | PREDICTED: smishing
+      SMS: Ciao   TEST,   inviaci   una   copia   del   tuo   documento   per   la   convalida   del   conto   gioco   e   potrai   prelevare   le   tue   vincite!https://tx.vc/r/mhL7/1GVKXa/1MxHa6S
+
+  [9] TRUE: spam | PREDICTED: smishing
+      SMS: 
+ Pending ATO payment, Resolve now to get payment at https://cakeondial.com/au
+ 
+
+  [10] TRUE: spam | PREDICTED: smishing
+      SMS: 
+ Ciao TEST, non hai ancora inviato il tuo documento per la convalida del conto gioco? Affrettati, hai ancora poco tempo https://tx.vc/r/mhL7/1HjmA8/1MxHa6S
+ 
+
+  [11] TRUE: spam | PREDICTED: smishing
+      SMS: Kelvin, Forward this text message to your guarantor. Click here to sign as guarantor for Kelvin. https://tx.vc/r/2QUKh/ 1Plus1 Loans
+      Signals: Money: ['loan']
+
+  [12] TRUE: spam | PREDICTED: smishing
+      SMS: 
+ Ciao TEST, inviaci una copia del tuo documento per la convalida del conto gioco e potrai prelevare le tue vincite!https://tx.vc/r/mhL7/1GVKXa/1MxHa6S
+  
+
+  [13] TRUE: spam | PREDICTED: smishing
+      SMS: This is CJ with POR. Please take a moment to complete this survey about politics in San Diego: https://www.surveymonkey.com/r/F8VLMMV?UID=BM6SZE "STOP"2end 
+
+  [14] TRUE: spam | PREDICTED: smishing
+      SMS: 
+ Gamertech.shop: Last call to complete checking out at Gamertech.shop!
+ https://sprch.co/zIg1Zp
+ Reply STOP to opt out
+ 
+
+  [15] TRUE: spam | PREDICTED: smishing
+      SMS: Track your order every step of the way in the Shop app: https://qvay.app.link/e/VVhoag801tb Reply STOP to unsubscribe Track your order every step of the way in the Shop app: https://shop.app/download Reply STOP to unsubscribe Track your order every s...
+
+----------------------------------------------------------------------
+DETAILED ANALYSIS: LEGITIMATE -> SPAM (25 messages)
+----------------------------------------------------------------------
+
+  Contains URL: 4/25 (16%)
+  Dataset URL flag (if_URL=1): 100000000111/25
+  Has urgency language: 0/25 (0%)
+  Has brand/entity names: 5/25 (20%)
+  Has money/prize language: 2/25 (8%)
+  Contains phone number: 0/25
+  Contains email: 0/25
+
+  Message length: mean=104, min=25, max=276
+  Most common brand mentions: [('ee', 4), ('apple', 1)]
+  Most common money words: [('bonus', 1), ('win', 1)]
+
+  --- Sample messages (15 of 25) ---
+
+  [1] TRUE: legitimate | PREDICTED: spam
+      SMS: Buzzzz! *grins* Did I buzz your ass? Buzz your chest ? Buzz your cock ? Where do you keep your phone ? Is the vibrator on ? Did you feel it shake ?
+      Signals: Brands: ['ee']
+
+  [2] TRUE: legitimate | PREDICTED: spam
+      SMS: I will be gentle princess! We will make sweet gentle love...
+      Signals: Brands: ['ee']
+
+  [3] TRUE: legitimate | PREDICTED: spam
+      SMS: Already one guy loving you:-.
+
+  [4] TRUE: legitimate | PREDICTED: spam
+      SMS: I love to cuddle! I want to hold you in my strong arms right now...
+
+  [5] TRUE: legitimate | PREDICTED: spam
+      SMS: Send ur birthdate with month and year, I will tel u ur LIFE PARTNER'S name. and the method of calculation. Reply must.
+
+  [6] TRUE: legitimate | PREDICTED: spam
+      SMS: Talk With Yourself Atleast Once In A Day...!!! Otherwise You Will Miss Your Best FRIEND In This WORLD...!!! -Shakespeare- SHESIL  &lt;#&gt;
+
+  [7] TRUE: legitimate | PREDICTED: spam
+      SMS: I can do that! I want to please you both inside and outside the bedroom...
+
+  [8] TRUE: legitimate | PREDICTED: spam
+      SMS: How much u trying to get?
+
+  [9] TRUE: legitimate | PREDICTED: spam
+      SMS: WHORE YOU ARE UNBELIEVABLE.
+
+  [10] TRUE: legitimate | PREDICTED: spam
+      SMS: Today is "I LOVE U" day. Send dis to all ur "VALUED FRNDS" evn me. If 3 comes back u'll gt married d person u luv! GOOD LUCK!!!
+
+  [11] TRUE: legitimate | PREDICTED: spam
+      SMS: What will we do in the shower, baby?
+
+  [12] TRUE: legitimate | PREDICTED: spam
+      SMS: Juz go google n search 4 qet...
+
+  [13] TRUE: legitimate | PREDICTED: spam
+      SMS: Sounds like there could be a lot of time spent in that chastity device boy ... *grins* ... Or take your beatings like a good dog. Going to lounge in a nice long bath now ?
+
+  [14] TRUE: legitimate | PREDICTED: spam
+      SMS: 
+Dear Mohd salman, Thanks for registering with Zomato. Earn upto Rs. 18000 per month.
+Join now to get Extra Bonus of 1000. Please download the app and register https://www.zomato.com/deliver-food/?d=t
+Watch this video to know more: https://youtu.b...
+      Signals: Money: ['bonus']
+
+  [15] TRUE: legitimate | PREDICTED: spam
+      SMS: Pass dis to all ur contacts n see wat u get! Red;i'm in luv wid u. Blue;u put a smile on my face. Purple;u r realy hot. Pink;u r so swt. Orange;i thnk i lyk u. Green;i realy wana go out wid u. Yelow;i wnt u bck. Black;i'm jealous of u. Brown;i miss y...
+      Signals: Brands: ['ee']
+
+----------------------------------------------------------------------
+DETAILED ANALYSIS: SPAM -> LEGITIMATE (8 messages)
+----------------------------------------------------------------------
+
+  Contains URL: 8/8 (100%)
+  Dataset URL flag (if_URL=1): 11111111/8
+  Has urgency language: 1/8 (12%)
+  Has brand/entity names: 1/8 (12%)
+  Has money/prize language: 6/8 (75%)
+  Contains phone number: 0/8
+  Contains email: 0/8
+
+  Message length: mean=220, min=139, max=330
+
+  Most common urgency words: [('account', 1)]
+  Most common brand mentions: [('ee', 1)]
+  Most common money words: [('discount', 5), ('cash', 1), ('credit', 1)]
+
+  --- Sample messages (8 of 8) ---
+
+  [1] TRUE: spam | PREDICTED: legitimate
+      SMS: Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below: https://tx.vc/r/3cJyH/ You can call us on 0333 444 8715 or click "Instruct" on any quote for a priority callback. Best Regards Conveyancing Index
+      Signals: Money: ['discount']
+
+  [2] TRUE: spam | PREDICTED: legitimate
+      SMS: Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
+ https://tx.vc/r/3lU1W/
+ We have also emailed these to you for reference.
+ Our law firms will contact you directly to discuss your case in more detail.
+ You can also instr...
+      Signals: Money: ['discount']
+
+  [3] TRUE: spam | PREDICTED: legitimate
+      SMS: Estas a unos clics de completar tu envio! Recibe notificaciones y rastrealo. Abre la app de Remmesa para enviar ya! http://app.remmesa.com/
+
+  [4] TRUE: spam | PREDICTED: legitimate
+      SMS: Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
+ https://tx.vc/r/2ZdYL/
+ You can call us on 0333 444 8715 or click "Instruct" on any quote for a priority callback.
+ Best Regards
+ Conveyancing Index
+      Signals: Money: ['discount']
+
+  [5] TRUE: spam | PREDICTED: legitimate
+      SMS: Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
+ https://tx.vc/r/2ZcAe/
+ You can call us on 0333 444 8715 or click "Instruct" on any quote for a priority callback.
+ Best Regards
+ Conveyancing Index
+      Signals: Money: ['discount']
+
+  [6] TRUE: spam | PREDICTED: legitimate
+      SMS: Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
+ https://tx.vc/r/2ZcpW/
+ You can call us on 0333 444 8715 or click "Instruct" on any quote for a priority callback.
+ Best Regards
+ Conveyancing Index
+      Signals: Money: ['discount']
+
+  [7] TRUE: spam | PREDICTED: legitimate
+      SMS: Hello,  we've  credited  Rs.  100  LybrateCash  in  your  account  for  installing  lybrate  App.  Remember,  it  is  100%  redeemable,  no  limit!  View  your  LybrateCash  balance  -  http://lybr.at/f4208787c
+      Signals: Urgency: ['account'] | Brands: ['ee'] | Money: ['cash', 'credit']
+
+  [8] TRUE: spam | PREDICTED: legitimate
+      SMS: Join us this Saturday 6/11/22 for an all levels webinar on essential dignities with Karen Hamaker-Zondag! Link to register: https://drip.io/kWa3Yg https://m.twil.io/GNh643d71P 
+
+
+======================================================================
+Saved 210 misclassified messages to: outputs\error_analysis.csv
+Open in Excel to review all errors manually.
+
+Tip: pipe output to file with:
+  python src/error_analysis.py > outputs/error_analysis_report.txt
+======================================================================

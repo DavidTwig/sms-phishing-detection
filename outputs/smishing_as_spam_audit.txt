@@ -1,0 +1,487 @@
+MANUAL AUDIT: 79 messages labelled SMISHING but predicted SPAM
+Question for each: Is the sender IMPERSONATING a trusted entity?
+  - YES = dataset is correct (genuine smishing)
+  - NO  = model is correct (this is spam, not smishing)
+======================================================================
+
+[1/79]
+SMS: <Forwarded from 88877>FREE entry into our £250 weekly comp just send the word ENTER to 88877 NOW. 18 T&C www.textcomp.com
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[2/79]
+SMS: FREE entry into our £250 weekly competition just text the word WIN to 80086 NOW. 18 T&C www.txttowin.co.uk
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[3/79]
+SMS: Derrick discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[4/79]
+SMS: +123 Congratulations - in this week's competition draw u have won the £1450 prize to claim just call 09050002311 b4280703. T&Cs/stop SMS 08718727868. Over 18 only 150ppm
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[5/79]
+SMS: kengleang top financial expert shares Insider Secrets of what works in The Markets & How to Invest https://tx.vc/r/2OXiY
+ Optout
+ https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[6/79]
+SMS: FREE entry into our £250 weekly comp just send the word ENTER to 84128 NOW. 18 T&C www.textcomp.com cust care 08712405020.
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[7/79]
+SMS: Kim discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[8/79]
+SMS: [emailÂ protected] / no subject / Are you interested in discreet affair? Open My Link I'll show you everything I'm live On My Website it's free join... https://qi.lv/z3i.
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[9/79]
+SMS: Alex free event reveals how to create cash flow using somebody else's property and money! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[10/79]
+SMS: ftght here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[11/79]
+SMS: Dear Matthew please call 09063440451 from a landline, your complimentary 4*Lux Tenerife holiday or £1000 CASH await collection. ppm150 SAE T&Cs Box334 SK38XH.
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[12/79]
+SMS: Hi babe its Chloe, how r u? I was smashed on saturday night, it was great! How was your weekend? U been missing me? SP visionsms.com Text stop to stop 150p/text
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[13/79]
+SMS: We tried to contact you re your reply to our offer of a Video Handset? 750 anytime any networks mins? UNLIMITED TEXT? Camcorder? Reply or call 08000930705 NOW
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[14/79]
+SMS: Start your craze adventure today. Register and get your ultimate welcome package https://tx.vc/r/3wc2K/1M94C8/7SnnDn5 Optout: https://tx.vc/o/b5618
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[15/79]
+SMS: Hello, I'm Michael Hendrix from OPN Architects Inc, We found your contact on Indeed employment resume. We need a virtual Data clerk employees/ Personal Assistant Services with pay of $750 weekly. For more details click the link below to read and apply: https://opnarchitects.wixsite.com/opn-architects
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[16/79]
+SMS: We tried to contact you re your reply to our offer of a Video Phone 750 anytime any network mins Half Price Line Rental Camcorder Reply or call 08000930705
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[17/79]
+SMS: We sincerely invite you to join our WS exchange group to share and exchange B-T.C together Earn 1000-5000 per day https://lihi2.cc/rlEbq 
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[18/79]
+SMS: jon lee discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[19/79]
+SMS: 
+ Slt Jai trouve ton tel sur un site Abn je recherche pas 1 relation ou 1 beau mec je m'en fou je veux juste discuter et Mon profil https://rdv15.com/vMhbWh
+ 
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[20/79]
+SMS: healer  discover  proven  Property  &Business  Methods  to  grow  your  revenue  in  2023.  Starts  Sat  10am!  https://tx.vc/r/346Qz  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[21/79]
+SMS: Urgent! Please call 0906346330. Your ABTA complimentary 4* Spanish Holiday or £10,000 cash await collection SAE T&Cs BOX 47 PO19 2EZ 150ppm 18+
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[22/79]
+SMS: marco discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[23/79]
+SMS: Justine 47ans divorcee approchant la cinquantaine recherche de nouvelles experiences dans votre region Alex clique ici pour ses photos https://rdv15.com/jKckiq
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[24/79]
+SMS: Urgent! call 09066350750 from your landline. Your complimentary 4* Ibiza Holiday or 10,000 cash await collection SAE T&Cs PO BOX 434 SK3 8WP 150 ppm 18+ 
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[25/79]
+SMS: Justine  47ans  divorcee  approchant  la  cinquantaine  recherche  de  nouvelles  experiences  dans  votre  region  Alex  clique  ici  pour  ses  photos  https://rdv15.com/jKckiq
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[26/79]
+SMS: Do you want 750 anytime any network mins 150 text and a NEW video phone for only five pounds per week call 08000776320 now or reply for delivery Tomorrow
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[27/79]
+SMS: Adel  here's  how  to  create  3  High  Cash-Flowing  Properties  &  Scale  to  a  Six  Figure  Revenue!  https://tx.vc/r/2Aiak  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[28/79]
+SMS: We sincerely invite you to join our WS exchange group to share and exchange B-T.C together Earn 1000-5000 per day https://lihi2.cc/rlEbq  
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[29/79]
+SMS: Hi dear, Your CV has passed, please receive a salary of 2000Taka per day. Contact information: https://wa.me/8801909866268 Pruitt Group Business Account wa.me
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[30/79]
+SMS: Mattias,   spinnaa   itsesi   pelien   Ã¤Ã¤relle,   kun   100%   Bonus,   jopa   200   ?  asti   200   Ilmaiskierrosta   odottavat   sinua   talletuksen   yhteydessÃ¤!   https://tx.vc/r/1J
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[31/79]
+SMS: Justine   47ans   divorcee   approchant   la   cinquantaine   recherche   de   nouvelles   experiences   dans   votre   region   Alex   clique   ici   pour   ses   photos   https://rdv15.com/jKckiq
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[32/79]
+SMS: Jai   un   probleme   avec   mes   voisins   ils   font   souvent   l'amour   Pierre.   Moi   je   suis   toute   seule.   Tu   veux   bien   m'aider?   Voir   son   profil   https://rdv0.co/agExfb
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[33/79]
+SMS: Celia  49ansJe  viens  de  divorcer  et  je  n  ai  pas  d'enfants  Alex  il  est  temps  que  je  m'amuse  mon  mari  ne  me  touchait  plus  mon  profil  :  https://rdv15.com/WkBzpl
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[34/79]
+SMS: Hello! We need extra hands in our team to meet up with our clients demand. Therefore, we'll like you to join us as a Purchasing Agent. You'll be working remotely and be compensated with $600 weekly. Why not visit https://miborealityasociate.wixsite.com/mibor to learn more about this offer! Tap and hold to pin
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[35/79]
+SMS: (1)message Helene Je veux sentir tes levres sur les miennes Pierre! Viens tchatter avant de finir sous la couette rejoins moi ici https://rdv15.com/MDXxxz
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[36/79]
+SMS: carleebuckley discover proven Property &Business Methods to grow your revenue in 2023. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[37/79]
+SMS: HHGRYFR  here's  how  to  create  3  High  Cash-Flowing  Properties  &  Scale  to  a  Six  Figure  Revenue!  https://tx.vc/r/2Aiak  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[38/79]
+SMS: Vdjdbd discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[39/79]
+SMS: HHGRYFR discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[40/79]
+SMS: Want a new Video Phone? 750 anytime any network mins? Half price line rental free text for 3 months? Reply or call 08000930705 for free delivery
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[41/79]
+SMS: (1)message Helene Je veux sentir tes levres sur les miennes Noah! Viens tchatter avant de finir sous la couette rejoins moi ici https://rdv15.com/WEW4nx
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[42/79]
+SMS: For taking part in our mobile survey yesterday! You can now have 500 texts 2 use however you wish. 2 get txts just send TXT to 80160 T&C www.txt43.com 1.50p
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[43/79]
+SMS: How about getting in touch with folks waiting for company? Just txt back your NAME and AGE to opt in! Enjoy the community (150p/SMS)
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[44/79]
+SMS: (1)message  Helene  Je  veux  sentir  tes  levres  sur  les  miennes  Pierre!  Viens  tchatter  avant  de  finir  sous  la  couette  rejoins  moi  ici  https://rdv15.com/MDXxxz
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[45/79]
+SMS: GXFTRJB here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[46/79]
+SMS: Hi JOE RAPHAL tonight 7pm, discover my Bulletproof System to boost your revenue faster in 2022! tx.vc/r/3axdT Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[47/79]
+SMS: elish  ahian  discover  proven  Property  &Business  Methods  to  grow  your  revenue  in  2022.  Starts  Sat  10am!  https://tx.vc/r/346Qz  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[48/79]
+SMS: healer discover proven Property &Business Methods to grow your revenue in 2023. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[49/79]
+SMS: Hi Emilly tonight 7pm, discover my Bulletproof System to boost your revenue faster in 2022! https://tx.vc/r/3axdT Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[50/79]
+SMS: elish ahian discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[51/79]
+SMS: Adel   here's   how   to   create   3   High   Cash-Flowing   Properties   &   Scale   to   a   Six   Figure   Revenue!   https://tx.vc/r/2Aiak   Optout   https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[52/79]
+SMS: FREE entry into our £250 weekly comp just send the word WIN to 80086 NOW. 18 T&C www.txttowin.co.uk
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[53/79]
+SMS: Hi  david  tonight  7pm,  discover  my  Bulletproof  System  to  boost  your  revenue  faster  in  2022!  https://tx.vc/r/3axdT  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[54/79]
+SMS: telloa  haq  discover  proven  Property  &Business  Methods  to  grow  your  revenue  in  2022.  Starts  Sat  10am!  https://tx.vc/r/346Qz  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[55/79]
+SMS: Do you want a NEW video phone750 anytime any network mins 150 text for only five pounds per week call 08000776320 now or reply for delivery tomorrow
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[56/79]
+SMS: rgent UR awarded a complimentary trip to EuroDisinc Trav, Aco&Entry41 Or £1000. To claim txt DIS to 87121 18+6*£1.50(moreFrmMob. ShrAcomOrSglSuplt)10, LS1 3AJ
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[57/79]
+SMS: We sincerely invite you to join our WS exchange group to share and exchange B-T.C together Earn Â¤1000-5000 per day. http://lihi2.cc/rlEbq 
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[58/79]
+SMS: JOE  RAPHAL  here's  how  to  create  3  High  Cash-Flowing  Properties  &  Scale  to  a  Six  Figure  Revenue!  tx.vc/r/2Aiak  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[59/79]
+SMS: Want the latest Video handset? 750 anytime any network mins? Half price line rental? Reply or call 08000930705 for delivery tomorrow
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[60/79]
+SMS: Hi  Emilly  tonight  7pm,  discover  my  Bulletproof  System  to  boost  your  revenue  faster  in  2022!  https://tx.vc/r/3axdT  Optout  https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[61/79]
+SMS: Join the First Ever Investing Summit kengleang & hear Insider Secrets of how to Invest for Profit https://tx.vc/r/2OXiY
+ Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[62/79]
+SMS: 
+ Start your craze adventure today. Register and get your ultimate welcome package https://tx.vc/r/3wc2K/1M94C8/7SUdUzx Optout: https://tx.vc/o/b5618
+ 
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[63/79]
+SMS: Hi Derrick tonight 7pm, discover my Bulletproof System to boost your revenue faster in 2022! https://tx.vc/r/3axdT Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[64/79]
+SMS: Knock Knock Txt whose there to 80082 to enter r weekly draw 4 a £250 gift voucher 4 a store of yr choice. T&Cs www.tkls.com age16 to stoptxtstop£1.50/week
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[65/79]
+SMS: 4 DIME CON CONEXIN DIVINA YA ESTA DISPONIBLE/ DIME WITH CONEXIN DIVINA IS OUT NOW https://llo.to/t/P9H03 O
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[66/79]
+SMS: david discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[67/79]
+SMS: louis   discover   proven   Property   &Business   Methods   to   grow   your   revenue   in   2023.   Starts   Sat   10am!   https://tx.vc/r/346Qz   Optout   https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[68/79]
+SMS: Celia 49ansJe viens de divorcer et je n ai pas d'enfants Alex il est temps que je m'amuse mon mari ne me touchait plus mon profil : https://rdv15.com/WkBzpl
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[69/79]
+SMS: Jai un probleme avec mes voisins ils font souvent l'amour Pierre. Moi je suis toute seule. Tu veux bien m'aider? Voir son profil https://rdv0.co/agExfb
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[70/79]
+SMS: Start your day the right way by claiming your huge welcome package, Claim it here https://tx.vc/r/3xaRa/1MvJWZ/7SpBXGk Optout: https://tx.vc/o/b5618
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[71/79]
+SMS: Dear, you passed the interview. An average of 6,000 TK can be received every day, contact: https://wa.me/8801751068418 10:48 AM
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[72/79]
+SMS: OTC 20% off entire store Valid for today only #1 voted store https://msgdeal.co/G6CLH Reply STOP to end.
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[73/79]
+SMS: JOE RAPHAL here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! tx.vc/r/2Aiak Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[74/79]
+SMS: Adel here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[75/79]
+SMS: HHGRYFR   here's   how   to   create   3   High   Cash-Flowing   Properties   &   Scale   to   a   Six   Figure   Revenue!   https://tx.vc/r/2Aiak   Optout   https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[76/79]
+SMS: Hi babe its Jordan, how r u? Im home from abroad and lonely, text me back if u wanna chat xxSP visionsms.com Text stop to stopCost 150p 08712400603
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[77/79]
+SMS: Start your craze adventure today. Register and get your ultimate welcome package https://tx.vc/r/3ygmk/1MVX0R/7SpBXGk Optout: https://tx.vc/o/b5618
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[78/79]
+SMS: Alex discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+
+[79/79]
+SMS: GXFTRJB discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122
+Has URL: No
+VERDICT: _____ (smishing / spam)
+----------------------------------------------------------------------
+

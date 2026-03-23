@@ -1,6 +1,11 @@
 """
 Evaluate the SMS Phishing Detector on the SmishX dataset.
 Calculates accuracy, precision, recall, and F1 score.
+
+Usage:
+    python src/evaluate.py                  # Full eval with context
+    python src/evaluate.py --no-context     # Full eval WITHOUT context
+    python src/evaluate.py --sample 30      # Quick test on 30 messages
 """
 
 import pandas as pd
@@ -8,6 +13,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from detector import SMSPhishingDetector
 import time
 import json
+import argparse
 from datetime import datetime
 
 def load_dataset(path: str) -> pd.DataFrame:
@@ -131,6 +137,16 @@ def save_results(results: dict, filename: str):
 
 
 if __name__ == "__main__":
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Evaluate SMS Phishing Detector')
+    parser.add_argument('--no-context', action='store_true',
+                        help='Disable context gathering (URL analysis, WHOIS, HTML)')
+    parser.add_argument('--sample', type=int, default=None,
+                        help='Only evaluate this many messages (for quick testing)')
+    args = parser.parse_args()
+
+    use_context = not args.no_context
+
     # Load dataset
     print("Loading SmishX dataset...")
     df = load_dataset('data/dataset.csv')
@@ -138,18 +154,25 @@ if __name__ == "__main__":
     print(f"Label distribution:\n{df['label'].value_counts()}")
     
     # Initialise detector
-    print("\nInitialising detector...")
-    detector = SMSPhishingDetector()
+    print(f"\nInitialising detector (context gathering: {'ON' if use_context else 'OFF'})...")
+    detector = SMSPhishingDetector(use_context=use_context)
     
-    # Run evaluation on a small sample first (to test)
+    # Run evaluation
+    sample_size = args.sample
     print("\n" + "=" * 60)
-    print("RUNNING EVALUATION (all 1,200 messages)")
+    if sample_size:
+        print(f"RUNNING EVALUATION ({sample_size} messages, context: {'ON' if use_context else 'OFF'})")
+    else:
+        print(f"RUNNING EVALUATION (all 1,200 messages, context: {'ON' if use_context else 'OFF'})")
     print("=" * 60)
     
-    results = evaluate_detector(detector, df, sample_size=None)
+    results = evaluate_detector(detector, df, sample_size=sample_size)
     print_results(results)
     
-    # Save results
-    save_results(results, 'outputs/evaluation_sample.json')
+    # Save results with descriptive filename
+    if use_context:
+        output_file = 'outputs/evaluation_with_context.json'
+    else:
+        output_file = 'outputs/evaluation_no_context.json'
     
-    print("\nTo run full evaluation, edit this file and change sample_size=20 to sample_size=None")
+    save_results(results, output_file)
