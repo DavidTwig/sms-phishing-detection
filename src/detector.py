@@ -1,6 +1,7 @@
 """
 SMS Phishing Detector using Llama 3.3 via Groq API.
 Based on SmishX methodology with context gathering and confidence scoring.
+Uses a two-pass classification system for improved accuracy.
 """
 
 import os
@@ -24,52 +25,30 @@ class ContextGatherer:
     """
     
     def __init__(self, timeout=10):
-        """Initialise with request timeout setting."""
         self.timeout = timeout
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
     
     def extract_urls(self, text: str) -> list:
-        """
-        Extract all URLs from SMS text.
-        Handles both http(s):// and common shortened formats.
-        """
         url_pattern = r'https?://[^\s<>"{}|\\^`\[\]]+'
         urls = re.findall(url_pattern, text, re.IGNORECASE)
-        
         short_pattern = r'(?<![/@])\b([a-zA-Z0-9][-a-zA-Z0-9]*\.[a-zA-Z]{2,}(?:/[^\s<>"{}|\\^`\[\]]*)?)'
         potential_urls = re.findall(short_pattern, text)
-        
         for url in potential_urls:
             if '.' in url and not url.startswith('http'):
                 if not re.match(r'^[a-z]\.[a-z]\.?$', url, re.IGNORECASE):
                     if not re.match(r'^\d+\.\d+', url):
                         urls.append('http://' + url)
-        
         return list(set(urls))
     
     def follow_redirects(self, url: str) -> dict:
-        """
-        Follow URL redirect chain to find final destination.
-        Returns chain of redirects and final URL.
-        """
         result = {
-            'original_url': url,
-            'final_url': url,
-            'redirect_chain': [],
-            'num_redirects': 0,
-            'error': None
+            'original_url': url, 'final_url': url,
+            'redirect_chain': [], 'num_redirects': 0, 'error': None
         }
-        
         try:
-            response = requests.head(
-                url, 
-                allow_redirects=True, 
-                timeout=self.timeout,
-                headers=self.headers
-            )
-            
+            response = requests.head(url, allow_redirects=True, timeout=self.timeout, headers=self.headers)
             if response.history:
                 result['redirect_chain'] = [r.url for r in response.history]
                 result['redirect_chain'].append(response.url)
@@ -77,7 +56,6 @@ class ContextGatherer:
                 result['num_redirects'] = len(response.history)
             else:
                 result['final_url'] = response.url
-                
         except requests.exceptions.SSLError:
             result['error'] = 'SSL certificate error (suspicious)'
         except requests.exceptions.ConnectionError:
@@ -86,95 +64,56 @@ class ContextGatherer:
             result['error'] = 'Request timed out'
         except Exception as e:
             result['error'] = str(e)
-        
         return result
     
     def get_whois_info(self, url: str) -> dict:
-        """
-        Get WHOIS information for a domain.
-        Returns registration date, registrar, and domain age.
-        """
         result = {
-            'domain': None,
-            'creation_date': None,
-            'registrar': None,
-            'domain_age_days': None,
-            'error': None
+            'domain': None, 'creation_date': None,
+            'registrar': None, 'domain_age_days': None, 'error': None
         }
-        
         try:
             import whois
-            
             parsed = urlparse(url)
             domain = parsed.netloc or parsed.path.split('/')[0]
             domain = domain.replace('www.', '')
             result['domain'] = domain
-            
             w = whois.whois(domain)
-            
             if w.creation_date:
                 creation = w.creation_date
                 if isinstance(creation, list):
                     creation = creation[0]
                 result['creation_date'] = creation.strftime('%Y-%m-%d') if creation else None
-                
                 if creation:
                     age = datetime.now() - creation
                     result['domain_age_days'] = age.days
-            
             if w.registrar:
                 result['registrar'] = w.registrar
-                
         except Exception as e:
             result['error'] = str(e)
-        
         return result
     
     def extract_html_content(self, url: str, max_length=2000) -> dict:
-        """
-        Fetch webpage and extract readable text content.
-        Limits content length to avoid token limits.
-        """
         result = {
-            'url': url,
-            'title': None,
-            'text_content': None,
-            'forms_detected': False,
-            'password_field': False,
-            'error': None
+            'url': url, 'title': None, 'text_content': None,
+            'forms_detected': False, 'password_field': False, 'error': None
         }
-        
         try:
-            response = requests.get(
-                url, 
-                timeout=self.timeout, 
-                headers=self.headers,
-                verify=False
-            )
+            response = requests.get(url, timeout=self.timeout, headers=self.headers, verify=False)
             response.raise_for_status()
-            
             soup = BeautifulSoup(response.text, 'html.parser')
-            
             if soup.title:
                 result['title'] = soup.title.string.strip() if soup.title.string else None
-            
             forms = soup.find_all('form')
             result['forms_detected'] = len(forms) > 0
-            
             password_inputs = soup.find_all('input', {'type': 'password'})
             result['password_field'] = len(password_inputs) > 0
-            
             for element in soup(['script', 'style', 'nav', 'footer', 'header']):
                 element.decompose()
-            
             text = soup.get_text(separator=' ', strip=True)
             text = ' '.join(text.split())
-            
             if len(text) > max_length:
                 text = text[:max_length] + '...'
-            
             result['text_content'] = text
-            
         except requests.exceptions.SSLError:
             result['error'] = 'SSL certificate error'
         except requests.exceptions.ConnectionError:
@@ -183,22 +122,12 @@ class ContextGatherer:
             result['error'] = 'Request timed out'
         except Exception as e:
             result['error'] = str(e)
-        
         return result
     
     def gather_context(self, sms_text: str) -> dict:
-        """
-        Main method: gather all context for URLs in an SMS.
-        Returns structured context for LLM analysis.
-        """
-        context = {
-            'urls_found': [],
-            'url_analyses': []
-        }
-        
+        context = {'urls_found': [], 'url_analyses': []}
         urls = self.extract_urls(sms_text)
         context['urls_found'] = urls
-        
         for url in urls[:3]:
             analysis = {
                 'url': url,
@@ -207,29 +136,21 @@ class ContextGatherer:
                 'html': self.extract_html_content(url)
             }
             context['url_analyses'].append(analysis)
-        
         return context
     
     def format_context_for_prompt(self, context: dict) -> str:
-        """
-        Format gathered context into readable text for LLM prompt.
-        """
         if not context['urls_found']:
             return "No URLs found in this message."
-        
         output = []
         output.append(f"URLs found: {len(context['urls_found'])}")
-        
         for i, analysis in enumerate(context['url_analyses'], 1):
             output.append(f"\n--- URL {i}: {analysis['url']} ---")
-            
             redirects = analysis['redirects']
             if redirects['error']:
                 output.append(f"Redirect check: ERROR - {redirects['error']}")
             else:
                 output.append(f"Final destination: {redirects['final_url']}")
                 output.append(f"Number of redirects: {redirects['num_redirects']}")
-            
             whois_info = analysis['whois']
             if whois_info['error']:
                 output.append(f"WHOIS: ERROR - {whois_info['error']}")
@@ -247,7 +168,6 @@ class ContextGatherer:
                             output.append(f"Domain age: ~{years} years (established)")
                 if whois_info['registrar']:
                     output.append(f"Registrar: {whois_info['registrar']}")
-            
             html_info = analysis['html']
             if html_info['error']:
                 output.append(f"Webpage: ERROR - {html_info['error']}")
@@ -261,16 +181,12 @@ class ContextGatherer:
                 if html_info['text_content']:
                     preview = html_info['text_content'][:500]
                     output.append(f"Page content preview: {preview}...")
-        
         return '\n'.join(output)
 
 
 # ============================================================
-# SYSTEM PROMPTS
+# SYSTEM PROMPTS - FIRST PASS (classification)
 # ============================================================
-# Full-length prompts delivered via system message.
-# This is the configuration that achieved 84.2% accuracy.
-
 SYSTEM_PROMPT_WITH_CONTEXT = """You are an SMS phishing detector with access to external URL analysis. You will receive an SMS message and gathered context about any URLs it contains.
 
 Based on the SMS text AND the URL context, determine if the message is:
@@ -318,19 +234,53 @@ CLASSIFICATION: [legitimate/spam/smishing]
 CONFIDENCE: [0-100]
 EXPLANATION: [2-3 sentences explaining why]"""
 
+# ============================================================
+# SYSTEM PROMPT - SECOND PASS (legitimacy review)
+# ============================================================
+SECOND_PASS_SYSTEM_PROMPT = """You are a message authenticity reviewer. A security system has flagged the following SMS message as potentially suspicious (classified as {first_classification}). Your job is to determine whether this might actually be a LEGITIMATE message from a real service.
+
+Many genuine messages look suspicious because they contain URLs, brand names, urgency language, or requests to take action. These are common in real notifications from companies.
+
+Signs this could be a GENUINE legitimate message:
+- Specific order numbers, tracking codes, or reference IDs (e.g., "order ID OD222900438837406000")
+- One-time passwords (OTP) or verification codes with specific numbers
+- Transaction alerts with specific amounts and card numbers (e.g., "Rs. 2,500 on card ending 4821")
+- Delivery status updates referencing specific items or dates
+- Feedback requests from a service the user may have recently used
+- App notifications (WhatsApp verification, food delivery updates, ride confirmations)
+- Data usage or account balance notifications from a telecom provider
+- Appointment reminders with specific times and locations
+
+Signs this is genuinely suspicious (NOT legitimate):
+- No specific details (vague "your account", "your package" with no specifics)
+- URL domain does not match the claimed brand
+- Asks for passwords, PINs, or full card numbers
+- Threatens account closure or legal action
+- Offers prizes, rewards, or money for clicking a link
+
+Based on these criteria, is this message actually legitimate?
+
+Respond in EXACTLY this format:
+VERDICT: [legitimate/suspicious]
+CONFIDENCE: [0-100]
+EXPLANATION: [2-3 sentences explaining why]"""
+
 
 class SMSPhishingDetector:
     """
-    Detects SMS phishing using LLM-based analysis with context gathering.
-    Provides classification, confidence score, and explanation.
+    Detects SMS phishing using LLM-based analysis with two-pass classification.
+    Pass 1: Standard classification (legitimate/spam/smishing)
+    Pass 2: For messages classified as spam/smishing, review whether they
+            might actually be legitimate notifications.
     """
     
-    def __init__(self, use_context=True):
+    def __init__(self, use_context=True, use_two_pass=True):
         """
         Initialise the detector with Groq client.
         
         Args:
             use_context: Whether to gather URL context (slower but more accurate)
+            use_two_pass: Whether to use second-pass legitimacy review
         """
         api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
@@ -338,33 +288,12 @@ class SMSPhishingDetector:
         self.client = Groq(api_key=api_key)
         self.model = "llama-3.3-70b-versatile"
         self.use_context = use_context
+        self.use_two_pass = use_two_pass
         self.context_gatherer = ContextGatherer() if use_context else None
     
-    def detect(self, sms_text: str) -> dict:
-        """
-        Analyse an SMS message for phishing.
-        
-        Args:
-            sms_text: The SMS message to analyse
-            
-        Returns:
-            Dictionary with:
-                - classification: 'legitimate', 'spam', or 'smishing'
-                - confidence: 0-100 score
-                - explanation: Why this classification was made
-                - context: Gathered URL context (if enabled)
-        """
-        
-        # Gather context if enabled
-        context_text = ""
-        context_data = None
-        
-        if self.use_context:
-            context_data = self.context_gatherer.gather_context(sms_text)
-            context_text = self.context_gatherer.format_context_for_prompt(context_data)
-        
-        # Build messages using system/user split
-        if self.use_context and context_data['urls_found']:
+    def _first_pass(self, sms_text: str, context_data=None, context_text="") -> dict:
+        """First pass: standard classification."""
+        if self.use_context and context_data and context_data['urls_found']:
             system_msg = SYSTEM_PROMPT_WITH_CONTEXT
             user_msg = f"""SMS Message:
 "{sms_text}"
@@ -384,30 +313,77 @@ URL Analysis Context:
                 {"role": "user", "content": user_msg}
             ],
             max_tokens=400,
-            temperature=0.1  # Low temperature for consistent results
+            temperature=0.1
         )
         
-        # Parse the response
         response_text = response.choices[0].message.content
         result = self._parse_response(response_text)
         result['raw_response'] = response_text
+        return result
+    
+    def _second_pass(self, sms_text: str, first_classification: str) -> dict:
+        """Second pass: review whether a flagged message is actually legitimate."""
+        system_msg = SECOND_PASS_SYSTEM_PROMPT.format(first_classification=first_classification)
+        user_msg = f"""SMS Message:
+"{sms_text}"
+"""
+
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_msg},
+                {"role": "user", "content": user_msg}
+            ],
+            max_tokens=400,
+            temperature=0.1
+        )
+        
+        response_text = response.choices[0].message.content
+        return self._parse_second_pass_response(response_text)
+    
+    def detect(self, sms_text: str) -> dict:
+        """
+        Analyse an SMS message for phishing using two-pass classification.
+        """
+        # Gather context if enabled
+        context_text = ""
+        context_data = None
         
         if self.use_context:
+            context_data = self.context_gatherer.gather_context(sms_text)
+            context_text = self.context_gatherer.format_context_for_prompt(context_data)
+        
+        # First pass: standard classification
+        result = self._first_pass(sms_text, context_data, context_text)
+        
+        # Second pass: if classified as spam or smishing, check if actually legitimate
+        if self.use_two_pass and result['classification'] in ['spam', 'smishing']:
+            second_result = self._second_pass(sms_text, result['classification'])
+            
+            if second_result['verdict'] == 'legitimate':
+                # Override: the message is actually legitimate
+                result['original_classification'] = result['classification']
+                result['original_confidence'] = result['confidence']
+                result['classification'] = 'legitimate'
+                result['confidence'] = second_result['confidence']
+                result['explanation'] = f"Second-pass review: {second_result['explanation']}"
+                result['two_pass_override'] = True
+            else:
+                result['two_pass_override'] = False
+        
+        if self.use_context and context_data:
             result['context'] = context_data
         
         return result
     
     def _parse_response(self, response_text: str) -> dict:
-        """Parse the LLM response into structured data."""
-        
+        """Parse first pass LLM response."""
         result = {
             'classification': 'unknown',
             'confidence': 0,
             'explanation': ''
         }
-        
         lines = response_text.strip().split('\n')
-        
         for line in lines:
             line = line.strip()
             if line.upper().startswith('CLASSIFICATION:'):
@@ -422,5 +398,28 @@ URL Analysis Context:
                     result['confidence'] = 50
             elif line.upper().startswith('EXPLANATION:'):
                 result['explanation'] = line.split(':', 1)[1].strip()
-        
+        return result
+    
+    def _parse_second_pass_response(self, response_text: str) -> dict:
+        """Parse second pass legitimacy review response."""
+        result = {
+            'verdict': 'suspicious',
+            'confidence': 0,
+            'explanation': ''
+        }
+        lines = response_text.strip().split('\n')
+        for line in lines:
+            line = line.strip()
+            if line.upper().startswith('VERDICT:'):
+                verdict = line.split(':', 1)[1].strip().lower()
+                if verdict in ['legitimate', 'suspicious']:
+                    result['verdict'] = verdict
+            elif line.upper().startswith('CONFIDENCE:'):
+                try:
+                    confidence = int(line.split(':', 1)[1].strip().replace('%', ''))
+                    result['confidence'] = max(0, min(100, confidence))
+                except ValueError:
+                    result['confidence'] = 50
+            elif line.upper().startswith('EXPLANATION:'):
+                result['explanation'] = line.split(':', 1)[1].strip()
         return result

@@ -18,8 +18,8 @@ from collections import Counter
 # ============================================================
 # CONFIGURATION
 # ============================================================
-RESULTS_PATH = "outputs/evaluation_sample.json"
-DATASET_PATH = "data/dataset.csv"
+RESULTS_PATH = "outputs/evaluation_no_context.json"
+DATASET_PATH = "data/dataset_corrected.csv"
 OUTPUT_DIR = "outputs"
 
 # ============================================================

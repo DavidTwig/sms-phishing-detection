@@ -1,0 +1,122 @@
+[
+  {
+    "attack": "homoglyph",
+    "intensity": 0.1,
+    "n_messages": 162,
+    "original_accuracy": 0.9753086419753086,
+    "attacked_accuracy": 0.9814814814814815,
+    "accuracy_drop": -0.006172839506172867,
+    "evasion_rate": 0.006329113924050633,
+    "evaded_count": 1
+  },
+  {
+    "attack": "homoglyph",
+    "intensity": 0.3,
+    "n_messages": 162,
+    "original_accuracy": 0.9814814814814815,
+    "attacked_accuracy": 0.9814814814814815,
+    "accuracy_drop": 0.0,
+    "evasion_rate": 0.006289308176100629,
+    "evaded_count": 1
+  },
+  {
+    "attack": "homoglyph",
+    "intensity": 0.5,
+    "n_messages": 162,
+    "original_accuracy": 0.9753086419753086,
+    "attacked_accuracy": 0.9567901234567902,
+    "accuracy_drop": 0.01851851851851849,
+    "evasion_rate": 0.03164556962025317,
+    "evaded_count": 5
+  },
+  {
+    "attack": "leetspeak",
+    "intensity": 0.1,
+    "n_messages": 162,
+    "original_accuracy": 0.9691358024691358,
+    "attacked_accuracy": 0.9691358024691358,
+    "accuracy_drop": 0.0,
+    "evasion_rate": 0.025477707006369428,
+    "evaded_count": 4
+  },
+  {
+    "attack": "leetspeak",
+    "intensity": 0.3,
+    "n_messages": 162,
+    "original_accuracy": 0.9814814814814815,
+    "attacked_accuracy": 0.9814814814814815,
+    "accuracy_drop": 0.0,
+    "evasion_rate": 0.012578616352201259,
+    "evaded_count": 2
+  },
+  {
+    "attack": "leetspeak",
+    "intensity": 0.5,
+    "n_messages": 162,
+    "original_accuracy": 0.9814814814814815,
+    "attacked_accuracy": 0.9753086419753086,
+    "accuracy_drop": 0.006172839506172867,
+    "evasion_rate": 0.006289308176100629,
+    "evaded_count": 1
+  },
+  {
+    "attack": "char_insertion",
+    "intensity": 0.1,
+    "n_messages": 162,
+    "original_accuracy": 0.9876543209876543,
+    "attacked_accuracy": 0.9753086419753086,
+    "accuracy_drop": 0.012345679012345623,
+    "evasion_rate": 0.0125,
+    "evaded_count": 2
+  },
+  {
+    "attack": "char_insertion",
+    "intensity": 0.2,
+    "n_messages": 162,
+    "original_accuracy": 0.9814814814814815,
+    "attacked_accuracy": 0.9567901234567902,
+    "accuracy_drop": 0.024691358024691357,
+    "evasion_rate": 0.025157232704402517,
+    "evaded_count": 4
+  },
+  {
+    "attack": "char_insertion",
+    "intensity": 0.3,
+    "n_messages": 162,
+    "original_accuracy": 0.9814814814814815,
+    "attacked_accuracy": 0.9691358024691358,
+    "accuracy_drop": 0.012345679012345734,
+    "evasion_rate": 0.012578616352201259,
+    "evaded_count": 2
+  },
+  {
+    "attack": "synonym",
+    "intensity": 0.3,
+    "n_messages": 162,
+    "original_accuracy": 0.9876543209876543,
+    "attacked_accuracy": 0.9753086419753086,
+    "accuracy_drop": 0.012345679012345623,
+    "evasion_rate": 0.0125,
+    "evaded_count": 2
+  },
+  {
+    "attack": "synonym",
+    "intensity": 0.5,
+    "n_messages": 162,
+    "original_accuracy": 0.9753086419753086,
+    "attacked_accuracy": 0.9753086419753086,
+    "accuracy_drop": 0.0,
+    "evasion_rate": 0.012658227848101266,
+    "evaded_count": 2
+  },
+  {
+    "attack": "synonym",
+    "intensity": 1.0,
+    "n_messages": 162,
+    "original_accuracy": 0.9814814814814815,
+    "attacked_accuracy": 0.9814814814814815,
+    "accuracy_drop": 0.0,
+    "evasion_rate": 0.006289308176100629,
+    "evaded_count": 1
+  }
+]

@@ -1,280 +1,95 @@
 SMS,true_label,predicted,confusion_type,if_URL,if_phone,if_email
-"Shipped: Your Amazon packagewith Old Spice High EnduranceDeodorant, Pure Sport, 3.0 oz,5... will be delivered Tue, May24. Track at http://a.co/4SJitSA",legitimate,smishing,legitimate -> smishing,1,0,0
-"Your Mint Data Update. You have used 100% of your monthly 15GB of data. You will be getting a fresh tank on Nov 12, 2024. Reply UPDATA or log into our app to add more.",legitimate,smishing,legitimate -> smishing,0,0,0
 "
-Chase | Zelle(R): XIYU WANG sent you $20.00 & it's ready now. Reply STOP to cancel these texts. 
-",legitimate,smishing,legitimate -> smishing,0,0,0
-Wife.how she knew the time of murder exactly,legitimate,smishing,legitimate -> smishing,0,0,0
-"Dear Hero,i am leaving to qatar tonite for an apt opportunity.pls do keep in touch at  &lt;EMAIL&gt; ,kerala",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Return Request Accepted: Your return request for boAt Ba... from your order with order ID OD222900438837406000 has been accepted by the seller. A Wishmaster will pick up the originally delivered item by Saturday, Sep 25, 2021. The refund will be initiated within 1 business day of the pick up. Please keep the item in the product box along with accessories & tags ready for pickup. Please check your email for important details to ensure a successful pickup.
-",legitimate,smishing,legitimate -> smishing,0,0,0
-Haven't received,legitimate,smishing,legitimate -> smishing,0,0,0
-"
-It's the last month of your Mint 3 Month Unlimited plan. How time flies. Log into your account at my.mintmobile.com or use our app to renew your plan.
+We hope you enjoyed your meal from KFC Janakpuri (W). We would like to hear about your experience. Please leave your feedback at https://tinyurl.com/2p96khfd
 ",legitimate,smishing,legitimate -> smishing,1,0,0
-University of southern california.,legitimate,smishing,legitimate -> smishing,0,0,0
-We are pleased to inform that your application for Airtel Broadband is processed successfully. Your installation will happen within 3 days.,legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Alert! After successful mobile no. verification, Kotak Bank App has been activated for CRN xx8418 on CPH2139. If not you, REPORT FRAUD on kotak.com/fraud
-",legitimate,smishing,legitimate -> smishing,1,0,0
-WE REGRET TO INFORM U THAT THE NHS HAS MADE A MISTAKE.U WERE NEVER ACTUALLY BORN.PLEASE REPORT 2 YOR LOCAL HOSPITAL 2B TERMINATED.WE R SORRY 4 THE INCONVENIENCE,legitimate,smishing,legitimate -> smishing,0,0,0
-"Open rebtel with firefox. When it loads just put plus sign in the user name place, and it will show you two numbers. The lower number is my number. Once you pick that number the pin will display okay!",legitimate,smishing,legitimate -> smishing,0,0,0
-About  &lt;#&gt; bucks. The banks fees are fixed. Better to call the bank and find out.,legitimate,smishing,legitimate -> smishing,0,0,0
-K:)k.are you in college?,legitimate,smishing,legitimate -> smishing,0,0,0
-You have registered Sinco as Payee. Log in at icicibank.com and enter URN  &lt;#&gt;  to confirm. Beware of frauds. Do NOT share or disclose URN to anyone.,legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Walmart: Great Value Low Sodium Ve... arrives by 7:50pm today. Track: https://w-mt.co/g/cY926E Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Walmart: Great news! Your Great Value Low Sodium Ve... arrived. View: https://w-mt.co/g/cYxCd6 Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
-Congrats ! Treat pending.i am not on mail for 2 days.will mail once thru.Respect mother at home.check mails.,legitimate,smishing,legitimate -> smishing,0,0,0
-"Delivered:  Hi  Sk,  your  package  with  Nestle  Lactogro...  is  successfully  delivered.  More  info  at  Lybrate.  http://lybr.at/2790a93b8  In  case  of  any  discrepancy  in  your  order,  mail  us  at  [emailÂ protected]  within  48  hrs  mentioning  your  order  code  and  registered  mobile  number.",legitimate,smishing,legitimate -> smishing,1,0,0
-Haga click en https://tiny.one/3nndndv8  para visualizar o cancelar tu entrada al evento DECARNEYHUESO - EL OFICIO DEL MAR,legitimate,smishing,legitimate -> smishing,1,0,0
-Haga click en https://tiny.one/2p8bd9j6  para visualizar o cancelar tu entrada al evento B VOCAL - VOCALOCURAS,legitimate,smishing,legitimate -> smishing,1,0,0
-"Delivered:   Hi   Khushi   Mondal,   your   package   with   Nestle   Lactogro...   is   successfully   delivered.   More   info   at   Lybrate.   http://lybr.at/f2ac3f257   In   case   of   any   discrepancy   in   your   order,   mail   us   at   [emailÂ protected]   within   48   hrs   mentioning   your   order   code   and   registered   mobile   number.",legitimate,smishing,legitimate -> smishing,1,0,0
-"Confirmed:   Your   order   for   Nestle   Lactogro...   successfully   placed   &   will   reach   you   by   07   Aug,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
-Haga  click  en  https://tiny.one/2p8bd9j6    para  visualizar  o  cancelar  tu  entrada  al  evento  B  VOCAL  -  VOCALOCURAS,legitimate,smishing,legitimate -> smishing,1,0,0
-"Confirmed:   Your   order   for   Nestle   Lactogro...   successfully   placed   &   will   reach   you   by   29   Aug,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
-"Delivered:   Hi   Sk,   your   package   with   Nestle   Lactogro...   is   successfully   delivered.   More   info   at   Lybrate.   http://lybr.at/2790a93b8   In   case   of   any   discrepancy   in   your   order,   mail   us   at   [emailÂ protected]   within   48   hrs   mentioning   your   order   code   and   registered   mobile   number.",legitimate,smishing,legitimate -> smishing,1,0,0
-"Confirmed:   Your   order   for   Polident   Dentur...   successfully   placed   &   will   reach   you   by   26   May,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
-[KuCoin]  Alert:  Your  password  has  been  updated.  Not  you?  Please  visit:  https://kucoin-auth.web.app,legitimate,smishing,legitimate -> smishing,1,0,0
-"Ð¢ÑÐº-ÑÑÐº,  ÑÑÐ¾  Ð´Ð¾ÑÑÐ°Ð²ÐºÐ°!  ÐÐ¾Ñ  Ð²Ð°Ñ  ÑÐµÐº  Ð½Ð°  Ð¿ÑÐµÐ´Ð¾Ð¿Ð»Ð°ÑÑ:  https://hm.ru/SrPgEJ",legitimate,smishing,legitimate -> smishing,1,0,0
-Haga  click  en  https://tiny.one/3nndndv8    para  visualizar  o  cancelar  tu  entrada  al  evento  DECARNEYHUESO  -  EL  OFICIO  DEL  MAR,legitimate,smishing,legitimate -> smishing,1,0,0
 "Confirmed:   Your   order   for   NANGROW   (33gms)   successfully   placed   &   will   reach   you   by   17   May,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
-"
- Hornady Transportation is interested in talking w/ you! Please fill out a
- complete application by clicking https://eztxt.net/q2OmUv or call
- 800-441-4271 for more info. STOP to end
-  ",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Walmart: Tyr Solid Latex Swim Cap shipped. Track: https://w-mt.co/g/cYILk0 Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
+[KuCoin]  Alert:  Your  password  has  been  updated.  Not  you?  Please  visit:  https://kucoin-auth.web.app,legitimate,smishing,legitimate -> smishing,1,0,0
+"Confirmed:   Your   order   for   Polident   Dentur...   successfully   placed   &   will   reach   you   by   26   May,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
+"Delivered:   Hi   Sk,   your   package   with   Nestle   Lactogro...   is   successfully   delivered.   More   info   at   Lybrate.   http://lybr.at/2790a93b8   In   case   of   any   discrepancy   in   your   order,   mail   us   at   [emailÂ protected]   within   48   hrs   mentioning   your   order   code   and   registered   mobile   number.",legitimate,smishing,legitimate -> smishing,1,0,0
+"Delivered:   Hi   Khushi   Mondal,   your   package   with   Nestle   Lactogro...   is   successfully   delivered.   More   info   at   Lybrate.   http://lybr.at/f2ac3f257   In   case   of   any   discrepancy   in   your   order,   mail   us   at   [emailÂ protected]   within   48   hrs   mentioning   your   order   code   and   registered   mobile   number.",legitimate,smishing,legitimate -> smishing,1,0,0
+Haga click en https://tiny.one/3nndndv8  para visualizar o cancelar tu entrada al evento DECARNEYHUESO - EL OFICIO DEL MAR,legitimate,smishing,legitimate -> smishing,1,0,0
+"Delivered:  Hi  Sk,  your  package  with  Nestle  Lactogro...  is  successfully  delivered.  More  info  at  Lybrate.  http://lybr.at/2790a93b8  In  case  of  any  discrepancy  in  your  order,  mail  us  at  [emailÂ protected]  within  48  hrs  mentioning  your  order  code  and  registered  mobile  number.",legitimate,smishing,legitimate -> smishing,1,0,0
+"Confirmed:   Your   order   for   NANGROW   (33gms)   successfully   placed   &   will   reach   you   by   12   May,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
+WE REGRET TO INFORM U THAT THE NHS HAS MADE A MISTAKE.U WERE NEVER ACTUALLY BORN.PLEASE REPORT 2 YOR LOCAL HOSPITAL 2B TERMINATED.WE R SORRY 4 THE INCONVENIENCE,legitimate,smishing,legitimate -> smishing,0,0,0
 "Dear John, please rememberto return your rented itemswithin 2 hours.
 Please fill out this form if youhave any feedback: bit.ly!Feedb951
 Thank you for renting with us!
 -The Rental Company",legitimate,smishing,legitimate -> smishing,1,0,0
-"I guess that's why you re worried. You must know that there's a way the body repairs itself. And i'm quite sure you shouldn't worry. We'll take it slow. First the tests, they will guide when your ovulation is then just relax. Nothing you've said is a reason to worry but i.ll keep on followin you up.",legitimate,smishing,legitimate -> smishing,0,0,0
+"Confirmed:   Your   order   for   Nestle   Lactogro...   successfully   placed   &   will   reach   you   by   07   Aug,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
+"Open rebtel with firefox. When it loads just put plus sign in the user name place, and it will show you two numbers. The lower number is my number. Once you pick that number the pin will display okay!",legitimate,smishing,legitimate -> smishing,0,0,0
+"Confirmed:   Your   order   for   Nestle   Lactogro...   successfully   placed   &   will   reach   you   by   29   Aug,   2022.   Track   here:   http://lybr.at/trck",legitimate,smishing,legitimate -> smishing,1,0,0
 "
-Thank You for using McDelivery Service, your One Time Password is 5005. This password expires in 30 minutes.
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Walmart: Great Value Low Sodium Ve... arrives by 7:50pm today. Track: https://w-mt.co/g/cY926E Reply HELP for info; STOP to opt out
+Thanks for your recent visit at KFC IBC Surat. Please share your feedback at https://tinyurl.com/mtmacsa3 & avail 10% discount on next visit. T&C
 ",legitimate,smishing,legitimate -> smishing,1,0,0
 "
 Walmart: Great news! Your Great Value Low Sodium Ve... arrived. View: https://w-mt.co/g/cYxCd6 Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Walmart: CAP Doorway Chin Up Bar shipped. Track: https://w-mt.co/g/cYetg5 Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Sorry, your Walmart delivery is delayed. It's now estimated to arrive Wed, Aug 21. Track: https://w-mt.co/g/cfEyvB. Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Dear Customer, payment of Rs 179.00 for Amazon for Standing Instruction VsnLR2EGj2 could not be processed successfully on your ICICI Bank Debit Card 8578. You can manage your Standing Instructions by visiting www.icicibank.com-Cards-Debit Cards-Standing Instruction & Recurring Charges-Manage Standing Instructions.
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"Arriving Today: Your Amazon package with Old Spice High Endurance Deodorant,PureSport, 3.0 oz,.. will be delivered by 8PM. Track at http://a.co/5mRhmyv",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Walmart: TAQU Waterproof 7 Suction... shipped. Track: https://w-mt.co/g/cgpT0H Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Walmart: Tyr Solid Latex Swim Cap shipped. Track: https://w-mt.co/g/cYILk0 Reply HELP for info; STOP to opt out
 ",legitimate,smishing,legitimate -> smishing,1,0,0
 "
 Great news! You have 2 Walmart packages out for delivery, and they should arrive today. Track: https://w-mt.co/g/cZc7NG. Reply HELP for info; STOP to opt out
 ",legitimate,smishing,legitimate -> smishing,1,0,0
 "
-Walmart: Your TAQU Waterproof 7 Suction...  should arrive today. Track: https://w-mt.co/g/cjLCew Reply HELP for info; STOP to opt out
+Need to set up data and picture messaging? We will be sending you a message with instructions shortly. Or check out bit.ly/mintapn at anytime.
 ",legitimate,smishing,legitimate -> smishing,1,0,0
+Haga  click  en  https://tiny.one/2p8bd9j6    para  visualizar  o  cancelar  tu  entrada  al  evento  B  VOCAL  -  VOCALOCURAS,legitimate,smishing,legitimate -> smishing,1,0,0
 "
 Mint Mobile: Looks like someone tried to access your account from a device or location we don't recognize. We want to make sure it's really you and have blocked this attempt.
 
 Reply INFO to learn more. Reply ALLOW to gain access to your account. Reply BLOCK to confirm this wasn't you.
 ",legitimate,smishing,legitimate -> smishing,0,0,0
 "
-Your WhatsApp code: 957-128
-You can also tap on this link to verify your phone: v.whatsapp.com/957128
-Don't share this code with others
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Dear Customer, Reference MCWA00020056002 for Cash withdrawal of Rs 15000 from Account 370505000344 is initiated through ICICI Bank INSTA Banking. Please quote this reference number to the Cash Teller.
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Walmart: Great Value Low Sodium Ve... is arriving soon. We'll leave the order at your door. Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Your Mint 3-Month, Unlimited plan expires in 2 days. Log into your account at my.mintmobile.com or via our app to make a payment and keep your Mint service going.
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Your Amazon Web Services (AWS) verification code is: 8250
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-It's the last month of your Mint 3 Month Unlimited plan. How time flies. Log into your account at my.mintmobile.com or use our app to renew your plan.
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Dear Customer, registration for Google Pay has started for ICICI Bank. If it was not you, report to your bank. Do not share card details/OTP/CVV with anyone.
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-100% of daily 1.50 GB data quota exhausted as on 28-Apr-22 19:30. Jio Number : 6280368198 Daily high speed data quota will be restored on 29-Apr-22 01:19.
-To know where you have consumed your data quota, click http://tiny1.jio.com/HelpfulTips
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Return Request Accepted: Your return request for boAt Ba... from your order with order ID OD222900438837406000 has been accepted by the seller. A Wishmaster will pick up the originally delivered item by Saturday, Sep 25, 2021. The refund will be initiated within 1 business day of the pick up. Please keep the item in the product box along with accessories & tags ready for pickup. Please check your email for important details to ensure a successful pickup.
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Walmart: TAQU Waterproof 7 Suction... shipped. Track: https://w-mt.co/g/cgpT0H Reply HELP for info; STOP to opt out
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Thank You for using McDelivery Service, your One Time Password is 5005. This password expires in 30 minutes.
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Your WhatsApp code: 957-128
-You can also tap on this link to verify your phone: v.whatsapp.com/957128
-Don't share this code with others
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-We hope you enjoyed your meal from KFC Janakpuri (W). We would like to hear about your experience. Please leave your feedback at https://tinyurl.com/2p96khfd
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Use [64547008] as One Time Password to login to your Swiggy Account pgLJ0BdTNB3
-",legitimate,smishing,legitimate -> smishing,0,0,0
-"
 Great news! You have 2 Walmart packages out for delivery, and they should arrive today. Track: https://w-mt.co/g/cZc7NG. Reply HELP for info; STOP to opt out
 ",legitimate,smishing,legitimate -> smishing,1,0,0
-"See you in 2 hours! Happy Customer Advisory's webinaron customer service 101 startsat 1 pm ET.
-Join here:
-zoom.com/meeting/1372y424y",legitimate,smishing,legitimate -> smishing,1,0,0
+Haga  click  en  https://tiny.one/3nndndv8    para  visualizar  o  cancelar  tu  entrada  al  evento  DECARNEYHUESO  -  EL  OFICIO  DEL  MAR,legitimate,smishing,legitimate -> smishing,1,0,0
+"Ð¢ÑÐº-ÑÑÐº,  ÑÑÐ¾  Ð´Ð¾ÑÑÐ°Ð²ÐºÐ°!  ÐÐ¾Ñ  Ð²Ð°Ñ  ÑÐµÐº  Ð½Ð°  Ð¿ÑÐµÐ´Ð¾Ð¿Ð»Ð°ÑÑ:  https://hm.ru/SrPgEJ",legitimate,smishing,legitimate -> smishing,1,0,0
 "
-Thanks for your recent visit at KFC IBC Surat. Please share your feedback at https://tinyurl.com/mtmacsa3 & avail 10% discount on next visit. T&C
+Walmart: Great news! Your Great Value Low Sodium Ve... arrived. View: https://w-mt.co/g/cYxCd6 Reply HELP for info; STOP to opt out
 ",legitimate,smishing,legitimate -> smishing,1,0,0
-I'm working technical support :)voice process.networking field.,legitimate,smishing,legitimate -> smishing,0,0,0
-"We like your style. $75 has now been added to your account. It will be automatically applied to your next renewal on Oct 11, 2024.",legitimate,smishing,legitimate -> smishing,0,0,0
-"
-Alert! After successful mobile no. verification, Kotak Bank App has been activated for CRN xx8418 on CPH2139. If not you, REPORT FRAUD on kotak.com/fraud
-",legitimate,smishing,legitimate -> smishing,1,0,0
-"
-Chase | Zelle(R): XIYU WANG sent you $20.00 & it's ready now. Reply STOP to cancel these texts. 
-",legitimate,smishing,legitimate -> smishing,0,0,0
+Online  Transport  wants  to  speak  w/  you  about  a  driving  position!  Click  here  https://eztxt.net/a59Cvr  to  complete  a  full  application  or  call  866-543-1235  for  more  info.  STOP  to  end,legitimate,spam,legitimate -> spam,1,0,0
+"wiskey Brandy Rum Gin Beer Vodka Scotch Shampain Wine ""KUDI""yarasu dhina vaazhthukkal. ..",legitimate,spam,legitimate -> spam,0,0,0
 "From Patricia Flores - Hi, I'd really appreciate it if you would share and donate to my GoFundMe campaign, Just trying to survive.. Help https://gofund.me/8a078279",legitimate,spam,legitimate -> spam,1,0,0
+Haga click en https://tiny.one/2p8bd9j6  para visualizar o cancelar tu entrada al evento B VOCAL - VOCALOCURAS,legitimate,spam,legitimate -> spam,1,0,0
+soon you will have the real thing princess! Do i make you wet? :),legitimate,spam,legitimate -> spam,0,0,0
+1Apple/Day=No Doctor. 1Tulsi Leaf/Day=No Cancer. 1Lemon/Day=No Fat. 1Cup Milk/day=No Bone Problms 3 Litres Watr/Day=No Diseases Snd ths 2 Whom U Care..:-),legitimate,spam,legitimate -> spam,0,0,0
 "
  ×××ª×××ª ×©× ×××××× ×©×× ×©××××, ×× × ××©×¨ ××ª ×××ª×××ª: https://smartjaluzi.com
  ",legitimate,spam,legitimate -> spam,1,0,0
-soon you will have the real thing princess! Do i make you wet? :),legitimate,spam,legitimate -> spam,0,0,0
-Online  Transport  wants  to  speak  w/  you  about  a  driving  position!  Click  here  https://eztxt.net/a59Cvr  to  complete  a  full  application  or  call  866-543-1235  for  more  info.  STOP  to  end,legitimate,spam,legitimate -> spam,1,0,0
-1Apple/Day=No Doctor. 1Tulsi Leaf/Day=No Cancer. 1Lemon/Day=No Fat. 1Cup Milk/day=No Bone Problms 3 Litres Watr/Day=No Diseases Snd ths 2 Whom U Care..:-),legitimate,spam,legitimate -> spam,0,0,0
-"Send ur birthdate with month and year, I will tel u ur LIFE PARTNER'S name. and the method of calculation. Reply must.",legitimate,spam,legitimate -> spam,0,0,0
-"wiskey Brandy Rum Gin Beer Vodka Scotch Shampain Wine ""KUDI""yarasu dhina vaazhthukkal. ..",legitimate,spam,legitimate -> spam,0,0,0
-I can do that! I want to please you both inside and outside the bedroom...,legitimate,spam,legitimate -> spam,0,0,0
-How much u trying to get?,legitimate,spam,legitimate -> spam,0,0,0
+"
+ Hornady Transportation is interested in talking w/ you! Please fill out a
+ complete application by clicking https://eztxt.net/q2OmUv or call
+ 800-441-4271 for more info. STOP to end
+  ",legitimate,spam,legitimate -> spam,1,0,0
+"As in missionary hook up, doggy hook up, standing...|",legitimate,spam,legitimate -> spam,0,0,0
+I'm working technical support :)voice process.networking field.,legitimate,spam,legitimate -> spam,0,0,0
+Buzzzz! *grins* Did I buzz your ass? Buzz your chest ? Buzz your cock ? Where do you keep your phone ? Is the vibrator on ? Did you feel it shake ?,legitimate,spam,legitimate -> spam,0,0,0
 I will be gentle princess! We will make sweet gentle love...,legitimate,spam,legitimate -> spam,0,0,0
 Already one guy loving you:-.,legitimate,spam,legitimate -> spam,0,0,0
+I love to cuddle! I want to hold you in my strong arms right now...,legitimate,spam,legitimate -> spam,0,0,0
+"Send ur birthdate with month and year, I will tel u ur LIFE PARTNER'S name. and the method of calculation. Reply must.",legitimate,spam,legitimate -> spam,0,0,0
+"Better than bb. If he wont use it, his wife will or them doctor",legitimate,spam,legitimate -> spam,0,0,0
+I can do that! I want to please you both inside and outside the bedroom...,legitimate,spam,legitimate -> spam,0,0,0
+How much u trying to get?,legitimate,spam,legitimate -> spam,0,0,0
 WHORE YOU ARE UNBELIEVABLE.,legitimate,spam,legitimate -> spam,0,0,0
-"Today is ""I LOVE U"" day. Send dis to all ur ""VALUED FRNDS"" evn me. If 3 comes back u'll gt married d person u luv! GOOD LUCK!!!",legitimate,spam,legitimate -> spam,0,0,0
+Is it your yahoo boys that bring in the perf? Or legal.,legitimate,spam,legitimate -> spam,0,0,0
 "What will we do in the shower, baby?",legitimate,spam,legitimate -> spam,0,0,0
-Buzzzz! *grins* Did I buzz your ass? Buzz your chest ? Buzz your cock ? Where do you keep your phone ? Is the vibrator on ? Did you feel it shake ?,legitimate,spam,legitimate -> spam,0,0,0
+"Today is ""I LOVE U"" day. Send dis to all ur ""VALUED FRNDS"" evn me. If 3 comes back u'll gt married d person u luv! GOOD LUCK!!!",legitimate,spam,legitimate -> spam,0,0,0
 Sounds like there could be a lot of time spent in that chastity device boy ... *grins* ... Or take your beatings like a good dog. Going to lounge in a nice long bath now ?,legitimate,spam,legitimate -> spam,0,0,0
+Sent me ur email id soon?I will sent that?0,legitimate,spam,legitimate -> spam,0,0,0
+"Just sent again. Do you scream and moan in bed, princess?",legitimate,spam,legitimate -> spam,0,0,0
 Juz go google n search 4 qet...,legitimate,spam,legitimate -> spam,0,0,0
 Pass dis to all ur contacts n see wat u get! Red;i'm in luv wid u. Blue;u put a smile on my face. Purple;u r realy hot. Pink;u r so swt. Orange;i thnk i lyk u. Green;i realy wana go out wid u. Yelow;i wnt u bck. Black;i'm jealous of u. Brown;i miss you Nw plz giv me one color,legitimate,spam,legitimate -> spam,0,0,0
-I love to cuddle! I want to hold you in my strong arms right now...,legitimate,spam,legitimate -> spam,0,0,0
-"Just sent again. Do you scream and moan in bed, princess?",legitimate,spam,legitimate -> spam,0,0,0
-Sent me ur email id soon?I will sent that?0,legitimate,spam,legitimate -> spam,0,0,0
-"As in missionary hook up, doggy hook up, standing...|",legitimate,spam,legitimate -> spam,0,0,0
-Is it your yahoo boys that bring in the perf? Or legal.,legitimate,spam,legitimate -> spam,0,0,0
 "
 Dear Mohd salman, Thanks for registering with Zomato. Earn upto Rs. 18000 per month.
 Join now to get Extra Bonus of 1000. Please download the app and register https://www.zomato.com/deliver-food/?d=t
 Watch this video to know more: https://youtu.be/5SpXmdITXDo
 ",legitimate,spam,legitimate -> spam,1,0,0
-Talk With Yourself Atleast Once In A Day...!!! Otherwise You Will Miss Your Best FRIEND In This WORLD...!!! -Shakespeare- SHESIL  &lt;#&gt;,legitimate,spam,legitimate -> spam,0,0,0
-Adel   here's   how   to   create   3   High   Cash-Flowing   Properties   &   Scale   to   a   Six   Figure   Revenue!   https://tx.vc/r/2Aiak   Optout   https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-elish ahian discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-FREE entry into our £250 weekly comp just send the word WIN to 80086 NOW. 18 T&C www.txttowin.co.uk,smishing,spam,smishing -> spam,1,0,0
-"Hi Emilly tonight 7pm, discover my Bulletproof System to boost your revenue faster in 2022! https://tx.vc/r/3axdT Optout https://tx.vc/o/8d122",smishing,spam,smishing -> spam,1,0,0
-"Hi  david  tonight  7pm,  discover  my  Bulletproof  System  to  boost  your  revenue  faster  in  2022!  https://tx.vc/r/3axdT  Optout  https://tx.vc/o/8d122",smishing,spam,smishing -> spam,1,0,0
-healer discover proven Property &Business Methods to grow your revenue in 2023. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-(1)message  Helene  Je  veux  sentir  tes  levres  sur  les  miennes  Pierre!  Viens  tchatter  avant  de  finir  sous  la  couette  rejoins  moi  ici  https://rdv15.com/MDXxxz,smishing,spam,smishing -> spam,1,0,0
-"Hi JOE RAPHAL tonight 7pm, discover my Bulletproof System to boost your revenue faster in 2022! tx.vc/r/3axdT Optout https://tx.vc/o/8d122",smishing,spam,smishing -> spam,1,0,0
-GXFTRJB here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-telloa  haq  discover  proven  Property  &Business  Methods  to  grow  your  revenue  in  2022.  Starts  Sat  10am!  https://tx.vc/r/346Qz  Optout  https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-How about getting in touch with folks waiting for company? Just txt back your NAME and AGE to opt in! Enjoy the community (150p/SMS),smishing,spam,smishing -> spam,0,0,0
-For taking part in our mobile survey yesterday! You can now have 500 texts 2 use however you wish. 2 get txts just send TXT to 80160 T&C www.txt43.com 1.50p,smishing,spam,smishing -> spam,1,1,0
-(1)message Helene Je veux sentir tes levres sur les miennes Noah! Viens tchatter avant de finir sous la couette rejoins moi ici https://rdv15.com/WEW4nx,smishing,spam,smishing -> spam,1,0,0
-Want a new Video Phone? 750 anytime any network mins? Half price line rental free text for 3 months? Reply or call 08000930705 for free delivery,smishing,spam,smishing -> spam,0,1,0
-HHGRYFR discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Vdjdbd discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-elish  ahian  discover  proven  Property  &Business  Methods  to  grow  your  revenue  in  2022.  Starts  Sat  10am!  https://tx.vc/r/346Qz  Optout  https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Do you want a NEW video phone750 anytime any network mins 150 text for only five pounds per week call 08000776320 now or reply for delivery tomorrow,smishing,spam,smishing -> spam,0,1,0
-JOE RAPHAL here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! tx.vc/r/2Aiak Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-We sincerely invite you to join our WS exchange group to share and exchange B-T.C together Earn Â¤1000-5000 per day. http://lihi2.cc/rlEbq ,smishing,spam,smishing -> spam,1,0,0
-HHGRYFR  here's  how  to  create  3  High  Cash-Flowing  Properties  &  Scale  to  a  Six  Figure  Revenue!  https://tx.vc/r/2Aiak  Optout  https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Alex discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Start your craze adventure today. Register and get your ultimate welcome package https://tx.vc/r/3ygmk/1MVX0R/7SpBXGk Optout: https://tx.vc/o/b5618,smishing,spam,smishing -> spam,1,0,0
-"Hi babe its Jordan, how r u? Im home from abroad and lonely, text me back if u wanna chat xxSP visionsms.com Text stop to stopCost 150p 08712400603",smishing,spam,smishing -> spam,0,1,0
-HHGRYFR   here's   how   to   create   3   High   Cash-Flowing   Properties   &   Scale   to   a   Six   Figure   Revenue!   https://tx.vc/r/2Aiak   Optout   https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Adel here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-OTC 20% off entire store Valid for today only #1 voted store https://msgdeal.co/G6CLH Reply STOP to end.,smishing,spam,smishing -> spam,1,0,0
 "Dear, you passed the interview. An average of 6,000 TK can be received every day, contact: https://wa.me/8801751068418 10:48 AM",smishing,spam,smishing -> spam,1,0,0
-"Start your day the right way by claiming your huge welcome package, Claim it here https://tx.vc/r/3xaRa/1MvJWZ/7SpBXGk Optout: https://tx.vc/o/b5618",smishing,spam,smishing -> spam,1,0,0
-Jai un probleme avec mes voisins ils font souvent l'amour Pierre. Moi je suis toute seule. Tu veux bien m'aider? Voir son profil https://rdv0.co/agExfb,smishing,spam,smishing -> spam,1,0,0
-Celia 49ansJe viens de divorcer et je n ai pas d'enfants Alex il est temps que je m'amuse mon mari ne me touchait plus mon profil : https://rdv15.com/WkBzpl,smishing,spam,smishing -> spam,1,0,0
-louis   discover   proven   Property   &Business   Methods   to   grow   your   revenue   in   2023.   Starts   Sat   10am!   https://tx.vc/r/346Qz   Optout   https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-david discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-4 DIME CON CONEXIN DIVINA YA ESTA DISPONIBLE/ DIME WITH CONEXIN DIVINA IS OUT NOW https://llo.to/t/P9H03 O,smishing,spam,smishing -> spam,1,0,0
-Knock Knock Txt whose there to 80082 to enter r weekly draw 4 a £250 gift voucher 4 a store of yr choice. T&Cs www.tkls.com age16 to stoptxtstop£1.50/week,smishing,spam,smishing -> spam,1,0,0
-"Hi Derrick tonight 7pm, discover my Bulletproof System to boost your revenue faster in 2022! https://tx.vc/r/3axdT Optout https://tx.vc/o/8d122",smishing,spam,smishing -> spam,1,0,0
-"
- Start your craze adventure today. Register and get your ultimate welcome package https://tx.vc/r/3wc2K/1M94C8/7SUdUzx Optout: https://tx.vc/o/b5618
- ",smishing,spam,smishing -> spam,1,0,0
-"Join the First Ever Investing Summit kengleang & hear Insider Secrets of how to Invest for Profit https://tx.vc/r/2OXiY
- Optout https://tx.vc/o/8d122",smishing,spam,smishing -> spam,1,0,0
-"Hi  Emilly  tonight  7pm,  discover  my  Bulletproof  System  to  boost  your  revenue  faster  in  2022!  https://tx.vc/r/3axdT  Optout  https://tx.vc/o/8d122",smishing,spam,smishing -> spam,1,0,0
-Want the latest Video handset? 750 anytime any network mins? Half price line rental? Reply or call 08000930705 for delivery tomorrow,smishing,spam,smishing -> spam,0,1,0
-JOE  RAPHAL  here's  how  to  create  3  High  Cash-Flowing  Properties  &  Scale  to  a  Six  Figure  Revenue!  tx.vc/r/2Aiak  Optout  https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-"rgent UR awarded a complimentary trip to EuroDisinc Trav, Aco&Entry41 Or £1000. To claim txt DIS to 87121 18+6*£1.50(moreFrmMob. ShrAcomOrSglSuplt)10, LS1 3AJ",smishing,spam,smishing -> spam,0,1,0
-carleebuckley discover proven Property &Business Methods to grow your revenue in 2023. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Start your craze adventure today. Register and get your ultimate welcome package https://tx.vc/r/3wc2K/1M94C8/7SnnDn5 Optout: https://tx.vc/o/b5618,smishing,spam,smishing -> spam,1,0,0
 "Hello! We need extra hands in our team to meet up with our clients demand. Therefore, we'll like you to join us as a Purchasing Agent. You'll be working remotely and be compensated with $600 weekly. Why not visit https://miborealityasociate.wixsite.com/mibor to learn more about this offer! Tap and hold to pin",smishing,spam,smishing -> spam,1,0,0
-Justine 47ans divorcee approchant la cinquantaine recherche de nouvelles experiences dans votre region Alex clique ici pour ses photos https://rdv15.com/jKckiq,smishing,spam,smishing -> spam,1,0,0
-marco discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Alex free event reveals how to create cash flow using somebody else's property and money! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-"Urgent! Please call 0906346330. Your ABTA complimentary 4* Spanish Holiday or £10,000 cash await collection SAE T&Cs BOX 47 PO19 2EZ 150ppm 18+",smishing,spam,smishing -> spam,0,1,0
-ftght here's how to create 3 High Cash-Flowing Properties & Scale to a Six Figure Revenue! https://tx.vc/r/2Aiak Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-healer  discover  proven  Property  &Business  Methods  to  grow  your  revenue  in  2023.  Starts  Sat  10am!  https://tx.vc/r/346Qz  Optout  https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-"Urgent! call 09066350750 from your landline. Your complimentary 4* Ibiza Holiday or 10,000 cash await collection SAE T&Cs PO BOX 434 SK3 8WP 150 ppm 18+ ",smishing,spam,smishing -> spam,0,1,0
-"Dear Matthew please call 09063440451 from a landline, your complimentary 4*Lux Tenerife holiday or £1000 CASH await collection. ppm150 SAE T&Cs Box334 SK38XH.",smishing,spam,smishing -> spam,0,1,0
-"Hi babe its Chloe, how r u? I was smashed on saturday night, it was great! How was your weekend? U been missing me? SP visionsms.com Text stop to stop 150p/text",smishing,spam,smishing -> spam,1,0,0
-jon lee discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-We tried to contact you re your reply to our offer of a Video Handset? 750 anytime any networks mins? UNLIMITED TEXT? Camcorder? Reply or call 08000930705 NOW,smishing,spam,smishing -> spam,0,1,0
-We sincerely invite you to join our WS exchange group to share and exchange B-T.C together Earn 1000-5000 per day https://lihi2.cc/rlEbq ,smishing,spam,smishing -> spam,1,0,0
-GXFTRJB discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-(1)message Helene Je veux sentir tes levres sur les miennes Pierre! Viens tchatter avant de finir sous la couette rejoins moi ici https://rdv15.com/MDXxxz,smishing,spam,smishing -> spam,1,0,0
-"
- Slt Jai trouve ton tel sur un site Abn je recherche pas 1 relation ou 1 beau mec je m'en fou je veux juste discuter et Mon profil https://rdv15.com/vMhbWh
- ",smishing,spam,smishing -> spam,1,0,0
-"Hello, I'm Michael Hendrix from OPN Architects Inc, We found your contact on Indeed employment resume. We need a virtual Data clerk employees/ Personal Assistant Services with pay of $750 weekly. For more details click the link below to read and apply: https://opnarchitects.wixsite.com/opn-architects",smishing,spam,smishing -> spam,1,0,0
-[emailÂ protected] / no subject / Are you interested in discreet affair? Open My Link I'll show you everything I'm live On My Website it's free join... https://qi.lv/z3i.,smishing,spam,smishing -> spam,1,0,0
-Do you want 750 anytime any network mins 150 text and a NEW video phone for only five pounds per week call 08000776320 now or reply for delivery Tomorrow,smishing,spam,smishing -> spam,0,1,0
-<Forwarded from 88877>FREE entry into our £250 weekly comp just send the word ENTER to 88877 NOW. 18 T&C www.textcomp.com,smishing,spam,smishing -> spam,1,1,0
-FREE entry into our £250 weekly competition just text the word WIN to 80086 NOW. 18 T&C www.txttowin.co.uk,smishing,spam,smishing -> spam,1,0,0
-Derrick discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-Celia  49ansJe  viens  de  divorcer  et  je  n  ai  pas  d'enfants  Alex  il  est  temps  que  je  m'amuse  mon  mari  ne  me  touchait  plus  mon  profil  :  https://rdv15.com/WkBzpl,smishing,spam,smishing -> spam,1,0,0
-Jai   un   probleme   avec   mes   voisins   ils   font   souvent   l'amour   Pierre.   Moi   je   suis   toute   seule.   Tu   veux   bien   m'aider?   Voir   son   profil   https://rdv0.co/agExfb,smishing,spam,smishing -> spam,1,0,0
-+123 Congratulations - in this week's competition draw u have won the £1450 prize to claim just call 09050002311 b4280703. T&Cs/stop SMS 08718727868. Over 18 only 150ppm,smishing,spam,smishing -> spam,0,1,0
-"kengleang top financial expert shares Insider Secrets of what works in The Markets & How to Invest https://tx.vc/r/2OXiY
- Optout
- https://tx.vc/o/8d122",smishing,spam,smishing -> spam,1,0,0
-Justine  47ans  divorcee  approchant  la  cinquantaine  recherche  de  nouvelles  experiences  dans  votre  region  Alex  clique  ici  pour  ses  photos  https://rdv15.com/jKckiq,smishing,spam,smishing -> spam,1,0,0
-FREE entry into our £250 weekly comp just send the word ENTER to 84128 NOW. 18 T&C www.textcomp.com cust care 08712405020.,smishing,spam,smishing -> spam,1,1,0
-Justine   47ans   divorcee   approchant   la   cinquantaine   recherche   de   nouvelles   experiences   dans   votre   region   Alex   clique   ici   pour   ses   photos   https://rdv15.com/jKckiq,smishing,spam,smishing -> spam,1,0,0
-"Mattias,   spinnaa   itsesi   pelien   Ã¤Ã¤relle,   kun   100%   Bonus,   jopa   200   ?  asti   200   Ilmaiskierrosta   odottavat   sinua   talletuksen   yhteydessÃ¤!   https://tx.vc/r/1J",smishing,spam,smishing -> spam,1,0,0
-"Hi dear, Your CV has passed, please receive a salary of 2000Taka per day. Contact information: https://wa.me/8801909866268 Pruitt Group Business Account wa.me",smishing,spam,smishing -> spam,1,0,0
-Kim discover proven Property &Business Methods to grow your revenue in 2022. Starts Sat 10am! https://tx.vc/r/346Qz Optout https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-We sincerely invite you to join our WS exchange group to share and exchange B-T.C together Earn 1000-5000 per day https://lihi2.cc/rlEbq  ,smishing,spam,smishing -> spam,1,0,0
-Adel  here's  how  to  create  3  High  Cash-Flowing  Properties  &  Scale  to  a  Six  Figure  Revenue!  https://tx.vc/r/2Aiak  Optout  https://tx.vc/o/8d122,smishing,spam,smishing -> spam,1,0,0
-We tried to contact you re your reply to our offer of a Video Phone 750 anytime any network mins Half Price Line Rental Camcorder Reply or call 08000930705,smishing,spam,smishing -> spam,0,1,0
-"Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below: https://tx.vc/r/3cJyH/ You can call us on 0333 444 8715 or click ""Instruct"" on any quote for a priority callback. Best Regards Conveyancing Index",spam,legitimate,spam -> legitimate,1,0,0
-Join us this Saturday 6/11/22 for an all levels webinar on essential dignities with Karen Hamaker-Zondag! Link to register: https://drip.io/kWa3Yg https://m.twil.io/GNh643d71P ,spam,legitimate,spam -> legitimate,1,0,0
+from www.Applausestore.com MonthlySubscription@50p/msg max6/month T&CsC web age16 2stop txt stop,spam,legitimate,spam -> legitimate,1,0,0
+"Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
+ https://tx.vc/r/2ZcpW/
+ You can call us on 0333 444 8715 or click ""Instruct"" on any quote for a priority callback.
+ Best Regards
+ Conveyancing Index",spam,legitimate,spam -> legitimate,1,0,0
 "Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
  https://tx.vc/r/3lU1W/
  We have also emailed these to you for reference.
@@ -282,69 +97,37 @@ Join us this Saturday 6/11/22 for an all levels webinar on essential dignities w
  You can also instruct any firm directly from the quote online.
  Best Regards
  Conveyancing Index",spam,legitimate,spam -> legitimate,1,0,0
-"Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
- https://tx.vc/r/2ZcpW/
- You can call us on 0333 444 8715 or click ""Instruct"" on any quote for a priority callback.
- Best Regards
- Conveyancing Index",spam,legitimate,spam -> legitimate,1,0,0
-"Hello,  we've  credited  Rs.  100  LybrateCash  in  your  account  for  installing  lybrate  App.  Remember,  it  is  100%  redeemable,  no  limit!  View  your  LybrateCash  balance  -  http://lybr.at/f4208787c",spam,legitimate,spam -> legitimate,1,0,0
-Estas a unos clics de completar tu envio! Recibe notificaciones y rastrealo. Abre la app de Remmesa para enviar ya! http://app.remmesa.com/,spam,legitimate,spam -> legitimate,1,0,0
-"Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
- https://tx.vc/r/2ZdYL/
- You can call us on 0333 444 8715 or click ""Instruct"" on any quote for a priority callback.
- Best Regards
- Conveyancing Index",spam,legitimate,spam -> legitimate,1,0,0
-"Your Discounted Conveyancing Index Quotes Can Be Viewed On The Link Below:
- https://tx.vc/r/2ZcAe/
- You can call us on 0333 444 8715 or click ""Instruct"" on any quote for a priority callback.
- Best Regards
- Conveyancing Index",spam,legitimate,spam -> legitimate,1,0,0
+Track your order every step of the way in the Shop app: https://qvay.app.link/e/VVhoag801tb Reply STOP to unsubscribe Track your order every step of the way in the Shop app: https://shop.app/download Reply STOP to unsubscribe Track your order every step of the way in the Shop app: https://shop.app/download Reply STOP to unsubscribe,spam,legitimate,spam -> legitimate,1,0,0
+"
+ 1000?æå¥ä¸??å¤©ä¸ å±ãä»æ¥ä¸ ! ?AACEKTV2AG8Z å¨èµ·??https://lihi2.cc/aiiCD
+ ",spam,smishing,spam -> smishing,1,0,0
+"We've upgraded your coupon, it's the last chance to win your cart. Code: 55DIS Order here >> https://sprch.co/gjgUkO - Balardi Reply STOP to opt out ",spam,smishing,spam -> smishing,1,0,0
+LEMON NADE You have a new notification: https://iaqwqtii.com/6hTbr Reply STOP to optout,spam,smishing,spam -> smishing,1,0,0
 "Ciao TEST, inviaci una copia del tuo documento per la convalida del conto gioco e potrai prelevare le tue vincite!https://tx.vc/r/mhL7/1GVKXa/1MxHa6S",spam,smishing,spam -> smishing,1,0,0
+"Kelvin, Your guarantor was not accepted. Forward this msg to your new guarantor https://tx.vc/r/2RPQk/ 1Plus1",spam,smishing,spam -> smishing,1,0,0
+"
+ æ¼å¥???å¤©ä¸ å±ãä¼ºæå¨??! å¥AABYOG7H2KP2æèª ä¸»å, æ»å¤©ä¸å± https://lihi2.cc/jJ9PF
+ ",spam,smishing,spam -> smishing,1,0,0
+"andrew, Forward this text message to your guarantor. Click here to sign as guarantor for andrew. https://tx.vc/r/2ZrlW/ 1Plus1 Loans",spam,smishing,spam -> smishing,1,0,0
+"Connor  To  get  your  loan  of  up  to  Â£10,000,  follow  this  link  https://tx.vc/r/2TDQJ/  This  was  also  sent  to  your  email.  1Plus1  Loans",spam,smishing,spam -> smishing,1,0,0
+"Grace , Your guarantor was not accepted. Forward this msg to your new guarantor https://tx.vc/r/2TS8Z/ 1Plus1 R",spam,smishing,spam -> smishing,1,0,0
+https://b.link/h21bc br7ca2,spam,smishing,spam -> smishing,1,0,0
+"
+ æ¼å¥???å¤©ä¸ å±ãä¼ºæå¨??! å¥AABYR429FJ2Xæèª ä¸»å, æ»å¤©ä¸å± https://lihi2.cc/jJ9PF
+ ",spam,smishing,spam -> smishing,1,0,0
 "
  Ciao TEST, inviaci una copia del tuo documento per la convalida del conto gioco e potrai prelevare le tue vincite!https://tx.vc/r/mhL7/1GVKXa/1MxHa6S
   ",spam,smishing,spam -> smishing,1,0,0
-Your B4U voucher w/c 27/03 is MARSMS. Log onto www.B4Utele.com for discount credit. To opt out reply stop. Customer care call 08717168528,spam,smishing,spam -> smishing,1,1,0
-"Michal, Forward this text message to your guarantor. Click here to sign as guarantor for Michal. https://tx.vc/r/2VqAm/ 1Plus1 Loans",spam,smishing,spam -> smishing,1,0,0
-"Kelvin, Your guarantor was not accepted. Forward this msg to your new guarantor https://tx.vc/r/2RPQk/ 1Plus1",spam,smishing,spam -> smishing,1,0,0
-"
- ?ç½åå¼¦??ãæºèªå½¼çç?èªè¨ãæ­£?,åãå¤ ?ç²¾å½©çå æç¨,ç«å³?:https://lihi2.cc/m1vjP
- ",spam,smishing,spam -> smishing,1,0,0
-Track your order every step of the way in the Shop app: https://qvay.app.link/e/VVhoag801tb Reply STOP to unsubscribe Track your order every step of the way in the Shop app: https://shop.app/download Reply STOP to unsubscribe Track your order every step of the way in the Shop app: https://shop.app/download Reply STOP to unsubscribe,spam,smishing,spam -> smishing,1,0,0
-"We've upgraded your coupon, it's the last chance to win your cart. Code: 55DIS Order here >> https://sprch.co/gjgUkO - Balardi Reply STOP to opt out ",spam,smishing,spam -> smishing,1,0,0
-LEMON NADE You have a new notification: https://iaqwqtii.com/6hTbr Reply STOP to optout,spam,smishing,spam -> smishing,1,0,0
-"
- pple.com/us/app/ring4/id594763296
- android: https://play.google.com/store/apps/details?id=com.ring4.app
- ",spam,smishing,spam -> smishing,1,0,0
-"
- Gamertech.shop: Last call to complete checking out at Gamertech.shop!
- https://sprch.co/zIg1Zp
- Reply STOP to opt out
- ",spam,smishing,spam -> smishing,1,0,0
-pple.com/us/app/ring4/id594763296 Android: https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
-"This is CJ with POR. Please take a moment to complete this survey about politics in San Diego: https://www.surveymonkey.com/r/F8VLMMV?UID=BM6SZE ""STOP""2end ",spam,smishing,spam -> smishing,1,0,0
 "Kelvin, Forward this text message to your guarantor. Click here to sign as guarantor for Kelvin. https://tx.vc/r/2QUKh/ 1Plus1 Loans",spam,smishing,spam -> smishing,1,0,0
-"
- pple.com/us/app/ring4/id594763296Android: https://play.google.com/store/apps/details?id=com.ring4.app...
- ",spam,smishing,spam -> smishing,1,0,0
-| pple.com/us/app/ring4/id594763296 Android: https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
-pple.com/us/app/ring4/id594763296Android:   https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
-"
- FreeMsg: KFCU Ctr: Case 18266687 your a/c will be charge USD1953.15 at
- Sport Mall? Not you, stop order at https://sportsmallgh.com/ DR
- ",spam,smishing,spam -> smishing,1,0,0
-"andrew, Forward this text message to your guarantor. Click here to sign as guarantor for andrew. https://tx.vc/r/2ZrlW/ 1Plus1 Loans",spam,smishing,spam -> smishing,1,0,0
-pple.com/us/app/ring4/id594763296Android:  https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
+"Ciao   TEST,   inviaci   una   copia   del   tuo   documento   per   la   convalida   del   conto   gioco   e   potrai   prelevare   le   tue   vincite!https://tx.vc/r/mhL7/1GVKXa/1MxHa6S",spam,smishing,spam -> smishing,1,0,0
 "
  Ciao TEST, non hai ancora inviato il tuo documento per la convalida del conto gioco? Affrettati, hai ancora poco tempo https://tx.vc/r/mhL7/1HjmA8/1MxHa6S
  ",spam,smishing,spam -> smishing,1,0,0
 "
  Pending ATO payment, Resolve now to get payment at https://cakeondial.com/au
  ",spam,smishing,spam -> smishing,1,0,0
-[SMS1 missed] pple.com/us/app/ring4/id594763296Android: https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
-test Optout: Visit https://tx.vc/o/e2340,spam,smishing,spam -> smishing,1,0,0
-pple.com/us/app/ring4/id594763296   android:   https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
-"Ciao   TEST,   inviaci   una   copia   del   tuo   documento   per   la   convalida   del   conto   gioco   e   potrai   prelevare   le   tue   vincite!https://tx.vc/r/mhL7/1GVKXa/1MxHa6S",spam,smishing,spam -> smishing,1,0,0
-pple.com/us/app/ring4/id594763296  android:  https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
-"Grace , Your guarantor was not accepted. Forward this msg to your new guarantor https://tx.vc/r/2TS8Z/ 1Plus1 R",spam,smishing,spam -> smishing,1,0,0
-pple.com/us/app/ring4/id594763296 android: https://play.google.com/store/apps/details?id=com.ring4.app,spam,smishing,spam -> smishing,1,0,0
+"
+ FreeMsg: KFCU Ctr: Case 18266687 your a/c will be charge USD1953.15 at
+ Sport Mall? Not you, stop order at https://sportsmallgh.com/ DR
+ ",spam,smishing,spam -> smishing,1,0,0
+"Michal, Forward this text message to your guarantor. Click here to sign as guarantor for Michal. https://tx.vc/r/2VqAm/ 1Plus1 Loans",spam,smishing,spam -> smishing,1,0,0
