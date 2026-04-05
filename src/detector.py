@@ -7,6 +7,7 @@ Uses a two-pass classification system for improved accuracy.
 import os
 import re
 import socket
+import math
 from datetime import datetime
 from urllib.parse import urlparse
 from dotenv import load_dotenv
@@ -14,9 +15,32 @@ from groq import Groq
 import requests
 from bs4 import BeautifulSoup
 
-# Load API key
+# Load the Groq API key from the .env file
 load_dotenv()
 
+# ============================================================
+# PLATT SCALING PARAMETERS
+# ============================================================
+# Platt scaling adjusts the model's raw confidence scores so they
+# better reflect actual accuracy. Without this, the model tends to
+# be overconfident (e.g. says 95% confident but is only right 80%
+# of the time). These two values were calculated by fitting a
+# logistic regression on the 1,200 evaluation predictions.
+# They get used in _parse_response() to calibrate each score.
+# See: Platt, J. (2000). "Probabilistic Outputs for Support Vector
+# Machines and Comparisons to Regularized Likelihood Methods."
+PLATT_COEF = 3.121423
+PLATT_INTERCEPT = -0.178857
+
+
+# ============================================================
+# CONTEXT GATHERER
+# ============================================================
+# This class investigates URLs found in SMS messages by checking
+# where they redirect, how old the domain is, and what's on the
+# page. NOTE: context gathering is implemented but DISABLED in the
+# final system because testing showed it actually hurt accuracy
+# (84.7% with context vs 93.7% without on the corrected dataset).
 
 class ContextGatherer:
     """
@@ -26,22 +50,31 @@ class ContextGatherer:
     
     def __init__(self, timeout=10):
         self.timeout = timeout
+        # Fake a browser user-agent so sites don't block the request
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
     
+    # Pull out any URLs from the SMS text using regex patterns
     def extract_urls(self, text: str) -> list:
+        # First pattern: catches full URLs starting with http/https
         url_pattern = r'https?://[^\s<>"{}|\\^`\[\]]+'
         urls = re.findall(url_pattern, text, re.IGNORECASE)
+        # Second pattern: catches shortened URLs without http prefix
+        # e.g. "bit.ly/abc123" or "dodgy-site.com/login"
         short_pattern = r'(?<![/@])\b([a-zA-Z0-9][-a-zA-Z0-9]*\.[a-zA-Z]{2,}(?:/[^\s<>"{}|\\^`\[\]]*)?)'
         potential_urls = re.findall(short_pattern, text)
         for url in potential_urls:
             if '.' in url and not url.startswith('http'):
+                # Filter out false positives like "a.m." or version numbers "2.0"
                 if not re.match(r'^[a-z]\.[a-z]\.?$', url, re.IGNORECASE):
                     if not re.match(r'^\d+\.\d+', url):
                         urls.append('http://' + url)
+        # Remove duplicates
         return list(set(urls))
     
+    # Follow a URL's redirect chain to see where it actually ends up.
+    # Phishing URLs often redirect through multiple hops to hide the real destination.
     def follow_redirects(self, url: str) -> dict:
         result = {
             'original_url': url, 'final_url': url,
@@ -50,6 +83,7 @@ class ContextGatherer:
         try:
             response = requests.head(url, allow_redirects=True, timeout=self.timeout, headers=self.headers)
             if response.history:
+                # Record every URL in the redirect chain
                 result['redirect_chain'] = [r.url for r in response.history]
                 result['redirect_chain'].append(response.url)
                 result['final_url'] = response.url
@@ -66,6 +100,8 @@ class ContextGatherer:
             result['error'] = str(e)
         return result
     
+    # Look up domain registration info. Newly created domains (< 30 days)
+    # are a strong phishing indicator since attackers register throwaway domains.
     def get_whois_info(self, url: str) -> dict:
         result = {
             'domain': None, 'creation_date': None,
@@ -73,6 +109,7 @@ class ContextGatherer:
         }
         try:
             import whois
+            # Extract just the domain from the full URL
             parsed = urlparse(url)
             domain = parsed.netloc or parsed.path.split('/')[0]
             domain = domain.replace('www.', '')
@@ -80,10 +117,12 @@ class ContextGatherer:
             w = whois.whois(domain)
             if w.creation_date:
                 creation = w.creation_date
+                # Some WHOIS responses return a list of dates — take the first
                 if isinstance(creation, list):
                     creation = creation[0]
                 result['creation_date'] = creation.strftime('%Y-%m-%d') if creation else None
                 if creation:
+                    # Calculate how many days old the domain is
                     age = datetime.now() - creation
                     result['domain_age_days'] = age.days
             if w.registrar:
@@ -92,6 +131,8 @@ class ContextGatherer:
             result['error'] = str(e)
         return result
     
+    # Fetch the webpage and check for suspicious elements like login
+    # forms or password fields — common on phishing pages.
     def extract_html_content(self, url: str, max_length=2000) -> dict:
         result = {
             'url': url, 'title': None, 'text_content': None,
@@ -103,14 +144,19 @@ class ContextGatherer:
             soup = BeautifulSoup(response.text, 'html.parser')
             if soup.title:
                 result['title'] = soup.title.string.strip() if soup.title.string else None
+            # Check for HTML forms (login pages, data entry)
             forms = soup.find_all('form')
             result['forms_detected'] = len(forms) > 0
+            # Check specifically for password input fields
             password_inputs = soup.find_all('input', {'type': 'password'})
             result['password_field'] = len(password_inputs) > 0
+            # Strip out non-content elements to get just the readable text
             for element in soup(['script', 'style', 'nav', 'footer', 'header']):
                 element.decompose()
             text = soup.get_text(separator=' ', strip=True)
+            # Collapse multiple whitespace into single spaces
             text = ' '.join(text.split())
+            # Truncate to avoid feeding huge pages into the LLM prompt
             if len(text) > max_length:
                 text = text[:max_length] + '...'
             result['text_content'] = text
@@ -124,6 +170,8 @@ class ContextGatherer:
             result['error'] = str(e)
         return result
     
+    # Run all context checks (redirects, WHOIS, HTML) on URLs in the message.
+    # Only analyses the first 3 URLs to avoid excessive API/network calls.
     def gather_context(self, sms_text: str) -> dict:
         context = {'urls_found': [], 'url_analyses': []}
         urls = self.extract_urls(sms_text)
@@ -138,6 +186,8 @@ class ContextGatherer:
             context['url_analyses'].append(analysis)
         return context
     
+    # Format all gathered URL context into a readable text block
+    # that gets appended to the LLM prompt.
     def format_context_for_prompt(self, context: dict) -> str:
         if not context['urls_found']:
             return "No URLs found in this message."
@@ -158,6 +208,7 @@ class ContextGatherer:
                 output.append(f"Domain: {whois_info['domain']}")
                 if whois_info['creation_date']:
                     output.append(f"Domain created: {whois_info['creation_date']}")
+                    # Flag domain age — very new domains are suspicious
                     if whois_info['domain_age_days'] is not None:
                         if whois_info['domain_age_days'] < 30:
                             output.append(f"Domain age: {whois_info['domain_age_days']} days (VERY NEW - suspicious)")
@@ -187,6 +238,12 @@ class ContextGatherer:
 # ============================================================
 # SYSTEM PROMPTS - FIRST PASS (classification)
 # ============================================================
+# These are the instructions sent to the LLM as the "system" message.
+# The key design decision is the three-class taxonomy (legitimate/spam/smishing)
+# with emphasis on the impersonation distinction: if the sender pretends to be
+# someone else, it's smishing; if they're honest about who they are, it's spam.
+# Two versions exist — one that includes URL context, one without.
+
 SYSTEM_PROMPT_WITH_CONTEXT = """You are an SMS phishing detector with access to external URL analysis. You will receive an SMS message and gathered context about any URLs it contains.
 
 Based on the SMS text AND the URL context, determine if the message is:
@@ -237,6 +294,13 @@ EXPLANATION: [2-3 sentences explaining why]"""
 # ============================================================
 # SYSTEM PROMPT - SECOND PASS (legitimacy review)
 # ============================================================
+# The second pass only runs on messages that the first pass flagged
+# as spam or smishing. It asks a different question: "Could this
+# actually be a legitimate notification?" This catches real messages
+# like delivery updates and OTP codes that look suspicious on the
+# surface. The {first_classification} placeholder gets filled in
+# with whatever the first pass decided.
+
 SECOND_PASS_SYSTEM_PROMPT = """You are a message authenticity reviewer. A security system has flagged the following SMS message as potentially suspicious (classified as {first_classification}). Your job is to determine whether this might actually be a LEGITIMATE message from a real service.
 
 Many genuine messages look suspicious because they contain URLs, brand names, urgency language, or requests to take action. These are common in real notifications from companies.
@@ -266,6 +330,10 @@ CONFIDENCE: [0-100]
 EXPLANATION: [2-3 sentences explaining why]"""
 
 
+# ============================================================
+# MAIN DETECTOR CLASS
+# ============================================================
+
 class SMSPhishingDetector:
     """
     Detects SMS phishing using LLM-based analysis with two-pass classification.
@@ -289,10 +357,13 @@ class SMSPhishingDetector:
         self.model = "llama-3.3-70b-versatile"
         self.use_context = use_context
         self.use_two_pass = use_two_pass
+        # Only create the context gatherer if context gathering is enabled
         self.context_gatherer = ContextGatherer() if use_context else None
     
     def _first_pass(self, sms_text: str, context_data=None, context_text="") -> dict:
         """First pass: standard classification."""
+        # Uses the context-aware prompt if URL context is available,
+        # otherwise falls back to the no-context prompt.
         if self.use_context and context_data and context_data['urls_found']:
             system_msg = SYSTEM_PROMPT_WITH_CONTEXT
             user_msg = f"""SMS Message:
@@ -306,6 +377,8 @@ URL Analysis Context:
 "{sms_text}"
 """
 
+        # Send to Llama 3.3 70B via Groq API
+        # temperature=0.1 keeps responses mostly deterministic
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
@@ -323,6 +396,7 @@ URL Analysis Context:
     
     def _second_pass(self, sms_text: str, first_classification: str) -> dict:
         """Second pass: review whether a flagged message is actually legitimate."""
+        # Only called when the first pass classified as spam or smishing
         system_msg = SECOND_PASS_SYSTEM_PROMPT.format(first_classification=first_classification)
         user_msg = f"""SMS Message:
 "{sms_text}"
@@ -345,7 +419,7 @@ URL Analysis Context:
         """
         Analyse an SMS message for phishing using two-pass classification.
         """
-        # Gather context if enabled
+        # Gather URL context if enabled (disabled in final system)
         context_text = ""
         context_data = None
         
@@ -353,15 +427,18 @@ URL Analysis Context:
             context_data = self.context_gatherer.gather_context(sms_text)
             context_text = self.context_gatherer.format_context_for_prompt(context_data)
         
-        # First pass: standard classification
+        # First pass: classify as legitimate, spam, or smishing
         result = self._first_pass(sms_text, context_data, context_text)
         
-        # Second pass: if classified as spam or smishing, check if actually legitimate
+        # Second pass: only runs if first pass said spam or smishing.
+        # Checks if the message might actually be a legitimate notification
+        # that just looks suspicious (e.g. real delivery updates, OTP codes).
         if self.use_two_pass and result['classification'] in ['spam', 'smishing']:
             second_result = self._second_pass(sms_text, result['classification'])
             
             if second_result['verdict'] == 'legitimate':
-                # Override: the message is actually legitimate
+                # Override the first pass — reclassify as legitimate
+                # Keep the original classification stored for reference
                 result['original_classification'] = result['classification']
                 result['original_confidence'] = result['confidence']
                 result['classification'] = 'legitimate'
@@ -377,12 +454,15 @@ URL Analysis Context:
         return result
     
     def _parse_response(self, response_text: str) -> dict:
-        """Parse first pass LLM response."""
+        """Parse first pass LLM response and apply Platt scaling to confidence."""
         result = {
             'classification': 'unknown',
             'confidence': 0,
+            'confidence_raw': 0,
             'explanation': ''
         }
+        # The LLM returns a structured text response with CLASSIFICATION:,
+        # CONFIDENCE:, and EXPLANATION: lines — parse each one
         lines = response_text.strip().split('\n')
         for line in lines:
             line = line.strip()
@@ -393,8 +473,18 @@ URL Analysis Context:
             elif line.upper().startswith('CONFIDENCE:'):
                 try:
                     confidence = int(line.split(':', 1)[1].strip().replace('%', ''))
-                    result['confidence'] = max(0, min(100, confidence))
+                    # Clamp to 0-100 range
+                    result['confidence_raw'] = max(0, min(100, confidence))
+                    # Apply Platt scaling to calibrate the confidence score.
+                    # Formula: calibrated = 1 / (1 + e^-(coef * raw + intercept))
+                    # This is a sigmoid function that maps the raw score through
+                    # a curve fitted to actual accuracy data. It pushes
+                    # overconfident scores down and underconfident scores up.
+                    raw_norm = result['confidence_raw'] / 100.0
+                    calibrated = 1 / (1 + math.exp(-(PLATT_COEF * raw_norm + PLATT_INTERCEPT)))
+                    result['confidence'] = round(calibrated * 100)
                 except ValueError:
+                    result['confidence_raw'] = 50
                     result['confidence'] = 50
             elif line.upper().startswith('EXPLANATION:'):
                 result['explanation'] = line.split(':', 1)[1].strip()
@@ -402,6 +492,8 @@ URL Analysis Context:
     
     def _parse_second_pass_response(self, response_text: str) -> dict:
         """Parse second pass legitimacy review response."""
+        # Same parsing logic as first pass but looks for VERDICT: instead
+        # of CLASSIFICATION: since the second pass uses different labels.
         result = {
             'verdict': 'suspicious',
             'confidence': 0,

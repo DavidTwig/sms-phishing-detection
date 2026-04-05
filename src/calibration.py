@@ -42,6 +42,12 @@ def load_results(path):
 # ============================================================
 # ECE CALCULATION
 # ============================================================
+# ECE (Expected Calibration Error) answers the question:
+# "When the model says it's 90% confident, is it actually right 90% of the time?"
+# A low ECE means confidence scores are trustworthy. A high ECE means
+# the model is over- or under-confident compared to how often it's correct.
+# ECE = 0 would be perfect calibration.
+
 def compute_ece(predictions, confidences, true_labels, n_bins=10):
     """
     Compute Expected Calibration Error (ECE).
@@ -49,9 +55,13 @@ def compute_ece(predictions, confidences, true_labels, n_bins=10):
     ECE measures how well confidence scores reflect actual accuracy.
     A perfectly calibrated model has ECE = 0.
     """
+    # Convert confidence from 0-100 scale to 0-1 scale for the calculation
     confs = np.array(confidences) / 100.0
+    # Create an array of 1s and 0s — 1 if prediction was correct, 0 if not
     correct = np.array([p == t for p, t in zip(predictions, true_labels)], dtype=float)
 
+    # Split the 0-1 confidence range into equal-width bins
+    # e.g. 10 bins = [0-0.1, 0.1-0.2, ..., 0.9-1.0]
     bin_boundaries = np.linspace(0, 1, n_bins + 1)
     bin_data = []
     ece = 0.0
@@ -60,6 +70,7 @@ def compute_ece(predictions, confidences, true_labels, n_bins=10):
         bin_lower = bin_boundaries[i]
         bin_upper = bin_boundaries[i + 1]
 
+        # Last bin uses <= instead of < so confidence of exactly 1.0 isn't missed
         if i == n_bins - 1:
             in_bin = (confs >= bin_lower) & (confs <= bin_upper)
         else:
@@ -67,6 +78,7 @@ def compute_ece(predictions, confidences, true_labels, n_bins=10):
 
         n_in_bin = in_bin.sum()
 
+        # Skip empty bins
         if n_in_bin == 0:
             bin_data.append({
                 'bin_lower': bin_lower, 'bin_upper': bin_upper,
@@ -75,9 +87,16 @@ def compute_ece(predictions, confidences, true_labels, n_bins=10):
             })
             continue
 
+        # For each bin, compare the average confidence to the actual accuracy
+        # e.g. if messages in the 0.8-0.9 bin have average confidence 0.85
+        # but only 0.70 accuracy, the gap is 0.15 (model is overconfident)
         bin_accuracy = correct[in_bin].mean()
         bin_confidence = confs[in_bin].mean()
         gap = abs(bin_accuracy - bin_confidence)
+
+        # ECE = weighted average of all bin gaps
+        # Each bin's gap is weighted by what fraction of total predictions it holds
+        # So bins with more predictions count more towards the final ECE score
         ece += (n_in_bin / len(confs)) * gap
 
         bin_data.append({
@@ -96,6 +115,7 @@ def compute_per_class_ece(predictions, confidences, true_labels, n_bins=10):
     results = {}
 
     for cls in classes:
+        # Filter to only predictions where the true label is this class
         mask = [t == cls for t in true_labels]
         cls_preds = [p for p, m in zip(predictions, mask) if m]
         cls_confs = [c for c, m in zip(confidences, mask) if m]
@@ -104,6 +124,7 @@ def compute_per_class_ece(predictions, confidences, true_labels, n_bins=10):
         if len(cls_preds) == 0:
             continue
 
+        # Reuse the same ECE function but only on this class's predictions
         ece, bin_data = compute_ece(cls_preds, cls_confs, cls_true, n_bins)
         accuracy = sum(p == t for p, t in zip(cls_preds, cls_true)) / len(cls_preds)
 
@@ -118,8 +139,14 @@ def compute_per_class_ece(predictions, confidences, true_labels, n_bins=10):
 # ============================================================
 # RELIABILITY DIAGRAM
 # ============================================================
+# A reliability diagram is a bar chart where each bar represents a
+# confidence bin. The bar height shows actual accuracy for that bin.
+# If the model is well-calibrated, bars should follow the diagonal
+# line (i.e. 80% confidence bin should have ~80% accuracy).
+
 def plot_reliability_diagram(bin_data, ece, title="Reliability Diagram", save_path=None):
     """Plot a reliability diagram showing calibration."""
+    # Two side-by-side plots: left = reliability diagram, right = bin counts
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
     bin_mids = [b['bin_mid'] for b in bin_data]
@@ -127,9 +154,12 @@ def plot_reliability_diagram(bin_data, ece, title="Reliability Diagram", save_pa
     counts = [b['count'] for b in bin_data]
     width = bin_data[0]['bin_upper'] - bin_data[0]['bin_lower'] if bin_data else 0.1
 
+    # Left plot: accuracy bars for each confidence bin
     bars = ax1.bar(bin_mids, accuracies, width=width * 0.85, alpha=0.7,
                    color='#4C72B0', edgecolor='#2E4057', linewidth=0.8, label='Accuracy')
 
+    # Overlay red shading to show the "gap" between confidence and accuracy
+    # — this is the calibration error for each bin, visually
     for i, b in enumerate(bin_data):
         if b['count'] > 0:
             gap_bottom = min(b['accuracy'], b['avg_confidence'])
@@ -137,6 +167,7 @@ def plot_reliability_diagram(bin_data, ece, title="Reliability Diagram", save_pa
             ax1.bar(b['bin_mid'], gap_height, bottom=gap_bottom,
                     width=width * 0.85, alpha=0.3, color='#C44E52', edgecolor='none')
 
+    # Diagonal line = perfect calibration (confidence matches accuracy exactly)
     ax1.plot([0, 1], [0, 1], 'k--', linewidth=1.5, label='Perfect calibration')
     ax1.set_xlabel('Mean Predicted Confidence', fontsize=12)
     ax1.set_ylabel('Fraction Correct (Accuracy)', fontsize=12)
@@ -147,6 +178,8 @@ def plot_reliability_diagram(bin_data, ece, title="Reliability Diagram", save_pa
     ax1.legend(loc='upper left', fontsize=10)
     ax1.grid(True, alpha=0.3)
 
+    # Right plot: how many predictions fell in each confidence bin
+    # Useful for seeing if the model clusters predictions in certain ranges
     ax2.bar(bin_mids, counts, width=width * 0.85, alpha=0.7,
             color='#55A868', edgecolor='#2E4057', linewidth=0.8)
     ax2.set_xlabel('Confidence Bin', fontsize=12)
@@ -167,10 +200,12 @@ def plot_per_class_reliability(per_class_results, save_path=None):
     classes = list(per_class_results.keys())
     n_classes = len(classes)
 
+    # One subplot per class (legitimate, spam, smishing)
     fig, axes = plt.subplots(1, n_classes, figsize=(6 * n_classes, 5))
     if n_classes == 1:
         axes = [axes]
 
+    # Different colour per class for visual distinction
     colors = {'legitimate': '#4C72B0', 'spam': '#55A868', 'smishing': '#C44E52'}
 
     for ax, cls in zip(axes, classes):
@@ -202,13 +237,16 @@ def plot_per_class_reliability(per_class_results, save_path=None):
 
 def plot_confidence_distribution(predictions, confidences, true_labels, save_path=None):
     """Plot confidence score distributions for correct vs incorrect predictions."""
+    # Split confidence scores into two groups: correct and incorrect predictions
     correct_confs = [c for p, c, t in zip(predictions, confidences, true_labels) if p == t]
     wrong_confs = [c for p, c, t in zip(predictions, confidences, true_labels) if p != t]
 
     fig, ax = plt.subplots(figsize=(10, 5))
     bins = range(0, 105, 5)
+    # Overlapping histograms — green for correct, red for incorrect
     ax.hist(correct_confs, bins=bins, alpha=0.6, color='#55A868', label=f'Correct (n={len(correct_confs)})', edgecolor='white')
     ax.hist(wrong_confs, bins=bins, alpha=0.6, color='#C44E52', label=f'Incorrect (n={len(wrong_confs)})', edgecolor='white')
+    # Dashed lines showing the average confidence for each group
     ax.axvline(np.mean(correct_confs), color='#2E7D32', linestyle='--', linewidth=2,
                label=f'Correct mean: {np.mean(correct_confs):.1f}')
     ax.axvline(np.mean(wrong_confs), color='#B71C1C', linestyle='--', linewidth=2,
@@ -234,7 +272,7 @@ def analyse_confidence_by_error_type(predictions, confidences, true_labels):
     print("CONFIDENCE BY ERROR TYPE")
     print("=" * 70)
 
-    # Group errors by confusion type
+    # Group errors by confusion type (e.g. "legitimate -> spam", "spam -> smishing")
     error_groups = {}
     for p, c, t in zip(predictions, confidences, true_labels):
         if p != t:
@@ -243,7 +281,7 @@ def analyse_confidence_by_error_type(predictions, confidences, true_labels):
                 error_groups[key] = []
             error_groups[key].append(c)
 
-    # Also get correct prediction confidences per class
+    # Also collect confidence scores for correct predictions per class
     correct_groups = {}
     for p, c, t in zip(predictions, confidences, true_labels):
         if p == t:
@@ -251,20 +289,20 @@ def analyse_confidence_by_error_type(predictions, confidences, true_labels):
                 correct_groups[t] = []
             correct_groups[t].append(c)
 
-    # Print correct prediction confidence by class
     print("\nCorrect prediction confidence by class:")
     for cls in sorted(correct_groups.keys()):
         confs = correct_groups[cls]
         print(f"  {cls}: mean={np.mean(confs):.1f}, median={np.median(confs):.1f}, "
               f"min={min(confs)}, max={max(confs)}, n={len(confs)}")
 
-    # Print error confidence by confusion type
+    # Sort error types by frequency (most common first)
     print("\nError confidence by confusion type:")
     for key in sorted(error_groups.keys(), key=lambda k: -len(error_groups[k])):
         confs = error_groups[key]
         print(f"  {key}: mean={np.mean(confs):.1f}, median={np.median(confs):.1f}, "
               f"min={min(confs)}, max={max(confs)}, n={len(confs)}")
-        # Show how many are below various thresholds
+        # Check how many errors had low confidence — if most errors are
+        # low-confidence, that means the model "knows" it's unsure
         for threshold in [60, 70, 80]:
             below = sum(1 for c in confs if c < threshold)
             print(f"    Below {threshold}%: {below}/{len(confs)} ({100*below/len(confs):.0f}%)")
@@ -279,6 +317,7 @@ def print_calibration_report(ece, bin_data, per_class_results, predictions, conf
     print("CONFIDENCE CALIBRATION ANALYSIS")
     print("=" * 70)
 
+    # Interpret the ECE score using standard thresholds
     print(f"\nOverall ECE: {ece:.4f}")
     if ece < 0.05:
         print("Interpretation: WELL CALIBRATED (ECE < 0.05)")
@@ -292,6 +331,8 @@ def print_calibration_report(ece, bin_data, per_class_results, predictions, conf
     correct_confs = [c for p, c, t in zip(predictions, confidences, true_labels) if p == t]
     wrong_confs = [c for p, c, t in zip(predictions, confidences, true_labels) if p != t]
 
+    # Compare average confidence when right vs when wrong
+    # Ideally the model should be less confident when it's wrong
     print(f"\nConfidence Statistics:")
     print(f"  Overall mean confidence: {np.mean(confidences):.1f}")
     print(f"  Correct predictions mean: {np.mean(correct_confs):.1f} (n={len(correct_confs)})")
@@ -311,6 +352,8 @@ def print_calibration_report(ece, bin_data, per_class_results, predictions, conf
     for b in bin_data:
         if b['count'] > 0:
             bin_label = f"{b['bin_lower']:.1f}-{b['bin_upper']:.1f}"
+            # "over" = model is more confident than accurate (overconfident)
+            # "under" = model is less confident than accurate (underconfident)
             direction = "over" if b['avg_confidence'] > b['accuracy'] else "under"
             print(f"  {bin_label:<15} {b['count']:<8} {b['accuracy']:<12.3f} {b['avg_confidence']:<12.3f} {b['gap']:<8.3f} ({direction})")
 
@@ -320,6 +363,8 @@ def print_calibration_report(ece, bin_data, per_class_results, predictions, conf
     for cls, data in per_class_results.items():
         print(f"  {cls:<15} {data['ece']:<10.4f} {data['accuracy']:<12.1%} {data['mean_confidence']:<12.1f} {data['count']:<8}")
 
+    # Find predictions where the model was very confident (>=80%) but wrong
+    # These are the most dangerous errors — high confidence but incorrect
     high_conf_errors = [(p, c, t) for p, c, t in zip(predictions, confidences, true_labels)
                         if p != t and c >= 80]
     print(f"\nHigh-Confidence Errors (>=80% confidence but wrong): {len(high_conf_errors)}")
@@ -342,14 +387,18 @@ def main():
                         help='Number of bins for ECE calculation (default: 10)')
     args = parser.parse_args()
 
+    # Load the evaluation results (predictions, confidence scores, true labels)
     predictions, confidences, true_labels = load_results(args.file)
 
+    # Compute overall ECE and per-class ECE
     ece, bin_data = compute_ece(predictions, confidences, true_labels, n_bins=args.bins)
     per_class_results = compute_per_class_ece(predictions, confidences, true_labels, n_bins=args.bins)
 
+    # Print the text report and error analysis
     print_calibration_report(ece, bin_data, per_class_results, predictions, confidences, true_labels)
     analyse_confidence_by_error_type(predictions, confidences, true_labels)
 
+    # Generate and save all plots
     os.makedirs('outputs', exist_ok=True)
 
     plot_reliability_diagram(bin_data, ece,

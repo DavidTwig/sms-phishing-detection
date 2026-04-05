@@ -5,12 +5,13 @@ Test that all packages and API key are working correctly.
 import os
 from dotenv import load_dotenv
 
-# Load API key from .env file
+# Load the Groq API key from the .env file in the project root
 load_dotenv()
 
 print("Testing your setup...\n")
 
-# Test 1: Check API key exists
+# Test 1: Make sure the API key is set
+# Without this, the detector can't make calls to the Llama model
 api_key = os.getenv("GROQ_API_KEY")
 if api_key:
     print("✓ Groq API key loaded successfully")
@@ -18,7 +19,8 @@ else:
     print("✗ Groq API key not found - check your .env file")
     exit()
 
-# Test 2: Test core packages
+# Test 2: Try importing each required package
+# If any fail, they need to be installed via pip
 try:
     import requests
     print("✓ requests")
@@ -55,7 +57,8 @@ try:
 except ImportError:
     print("✗ groq")
 
-# Test 3: Test Groq API connection
+# Test 3: Send a simple message to the Groq API to confirm
+# the key is valid and the model is accessible
 print("\nTesting Groq API connection...")
 try:
     from groq import Groq
@@ -75,4 +78,3 @@ print("\n✅ Setup complete! You're ready to start building.")
 
 
 ## Run the test with python src/test_setup.py in venv
-

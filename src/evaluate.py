@@ -20,7 +20,8 @@ def load_dataset(path: str) -> pd.DataFrame:
     """Load and clean the SmishX dataset."""
     df = pd.read_csv(path)
     
-    # Clean the label column
+    # Normalise labels to lowercase and strip whitespace
+    # so "Smishing", " smishing", "SMISHING" all become "smishing"
     df['label'] = df['label'].str.strip().str.lower()
     
     return df
@@ -38,6 +39,8 @@ def evaluate_detector(detector: SMSPhishingDetector, df: pd.DataFrame, sample_si
         Dictionary with predictions and metrics
     """
     
+    # If --sample was specified, take a random subset of messages
+    # random_state=42 makes the same sample reproducible across runs
     if sample_size:
         df = df.sample(n=sample_size, random_state=42)
     
@@ -48,10 +51,14 @@ def evaluate_detector(detector: SMSPhishingDetector, df: pd.DataFrame, sample_si
     confidences = []
     true_labels = []
     
+    # Loop through every SMS in the dataset and classify it
     for idx, row in df.iterrows():
         sms = row['SMS']
         true_label = row['label']
         
+        # Call the detector (this makes the Groq API call)
+        # If something goes wrong (e.g. API timeout), record 'unknown'
+        # rather than crashing the whole evaluation
         try:
             result = detector.detect(sms)
             pred_label = result['classification']
@@ -72,7 +79,13 @@ def evaluate_detector(detector: SMSPhishingDetector, df: pd.DataFrame, sample_si
     print("-" * 50)
     print("Calculating metrics...")
     
-    # Calculate metrics
+    # Use scikit-learn to compute standard classification metrics:
+    # - accuracy: percentage of predictions that were correct overall
+    # - classification_report: precision, recall, and F1 for each class
+    #   precision = of everything predicted as X, how many actually were X
+    #   recall = of everything that actually was X, how many did it catch
+    #   F1 = a single number combining precision and recall (higher = better)
+    # - confusion_matrix: table showing how predictions map to true labels
     results = {
         'predictions': predictions,
         'confidences': confidences,
@@ -93,6 +106,7 @@ def print_results(results: dict):
     
     print(f"\nOverall Accuracy: {results['accuracy']:.1%}")
     
+    # Per-class table showing precision, recall, F1 for each category
     print("\n" + "-" * 60)
     print("Per-Class Metrics:")
     print("-" * 60)
@@ -106,6 +120,9 @@ def print_results(results: dict):
     
     print("-" * 60)
     
+    # Confusion matrix: rows = actual labels, columns = predicted labels
+    # e.g. row "legit", column "spam" = how many legitimate messages
+    # were incorrectly predicted as spam
     print("\nConfusion Matrix:")
     print("                 Predicted")
     print("              legit   spam   smish")
@@ -119,7 +136,9 @@ def print_results(results: dict):
 def save_results(results: dict, filename: str):
     """Save results to a JSON file."""
     
-    # Convert to serialisable format
+    # Package everything into a single JSON-friendly dictionary
+    # This file gets used by calibration.py, error_analysis.py,
+    # and platt_scaling.py for further analysis
     save_data = {
         'timestamp': datetime.now().isoformat(),
         'accuracy': results['accuracy'],
@@ -137,7 +156,7 @@ def save_results(results: dict, filename: str):
 
 
 if __name__ == "__main__":
-    # Parse command line arguments
+    # Set up command line flags
     parser = argparse.ArgumentParser(description='Evaluate SMS Phishing Detector')
     parser.add_argument('--no-context', action='store_true',
                         help='Disable context gathering (URL analysis, WHOIS, HTML)')
@@ -145,19 +164,22 @@ if __name__ == "__main__":
                         help='Only evaluate this many messages (for quick testing)')
     args = parser.parse_args()
 
+    # --no-context flag flips context off (the final system runs without it)
     use_context = not args.no_context
 
-    # Load dataset
+    # Load the dataset — change this path between dataset.csv and
+    # dataset_corrected.csv depending on which version to evaluate
     print("Loading SmishX dataset...")
-    df = load_dataset('data/dataset.csv')
+    df = load_dataset('data/dataset_corrected.csv')
     print(f"Loaded {len(df)} messages")
     print(f"Label distribution:\n{df['label'].value_counts()}")
     
-    # Initialise detector
+    # Create the detector instance
+    # use_context controls whether URL/WHOIS/HTML analysis runs
     print(f"\nInitialising detector (context gathering: {'ON' if use_context else 'OFF'})...")
     detector = SMSPhishingDetector(use_context=use_context)
     
-    # Run evaluation
+    # Run the full evaluation loop
     sample_size = args.sample
     print("\n" + "=" * 60)
     if sample_size:
@@ -169,7 +191,8 @@ if __name__ == "__main__":
     results = evaluate_detector(detector, df, sample_size=sample_size)
     print_results(results)
     
-    # Save results with descriptive filename
+    # Output filename depends on whether context was enabled
+    # so results from different configs don't overwrite each other
     if use_context:
         output_file = 'outputs/evaluation_with_context.json'
     else:

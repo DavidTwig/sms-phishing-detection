@@ -27,13 +27,15 @@ import argparse
 from collections import Counter
 from detector import SMSPhishingDetector
 
+# Lock the random seed so results are the same every time the script runs
 random.seed(42)
 
 # ============================================================
 # ATTACK 1: HOMOGLYPH SUBSTITUTION
 # ============================================================
-# Maps Latin characters to visually identical characters from
-# Cyrillic, Greek, and other Unicode scripts.
+# Homoglyphs are characters from other alphabets (e.g. Cyrillic) that
+# look identical to Latin letters but have different character codes.
+# Used by attackers to bypass text-matching filters.
 HOMOGLYPH_MAP = {
     'a': '\u0430',  # Cyrillic а
     'c': '\u0441',  # Cyrillic с
@@ -69,14 +71,20 @@ def attack_homoglyph(text, intensity=0.3):
         Modified text with homoglyph substitutions
     """
     chars = list(text)
+
+    # Find every character position that has a homoglyph replacement available
     eligible_indices = [i for i, c in enumerate(chars) if c in HOMOGLYPH_MAP]
     
+    # If no characters can be swapped, return the text unchanged
     if not eligible_indices:
         return text
     
+    # Work out how many characters to replace based on the intensity percentage
+    # Always replace at least 1 character so the attack actually does something
     n_replace = max(1, int(len(eligible_indices) * intensity))
     replace_indices = random.sample(eligible_indices, min(n_replace, len(eligible_indices)))
     
+    # Swap each selected character with its Cyrillic/Greek lookalike
     for i in replace_indices:
         chars[i] = HOMOGLYPH_MAP[chars[i]]
     
@@ -86,6 +94,9 @@ def attack_homoglyph(text, intensity=0.3):
 # ============================================================
 # ATTACK 2: LEETSPEAK SUBSTITUTION
 # ============================================================
+# Leetspeak replaces letters with similar-looking numbers/symbols
+# e.g. "password" becomes "p4$$w0rd". A technique used in phishing
+# messages to dodge keyword-based filters.
 LEET_MAP = {
     'a': '4', 'A': '4',
     'e': '3', 'E': '3',
@@ -115,6 +126,7 @@ def attack_leetspeak(text, intensity=0.3):
     if not eligible_indices:
         return text
     
+    # Same logic as homoglyph — pick a random subset of eligible characters to replace
     n_replace = max(1, int(len(eligible_indices) * intensity))
     replace_indices = random.sample(eligible_indices, min(n_replace, len(eligible_indices)))
     
@@ -127,6 +139,9 @@ def attack_leetspeak(text, intensity=0.3):
 # ============================================================
 # ATTACK 3: CHARACTER INSERTION
 # ============================================================
+# Unicode characters that take up zero visual space. Inserting them
+# into words makes the text look normal but the underlying data is
+# different, which can confuse text-matching detectors.
 INVISIBLE_CHARS = [
     '\u200B',  # Zero-width space
     '\u200C',  # Zero-width non-joiner
@@ -147,7 +162,8 @@ def attack_char_insertion(text, intensity=0.15):
         Modified text with invisible characters inserted
     """
     chars = list(text)
-    # Only insert between alphabetic characters (not spaces or punctuation)
+    # Only pick positions between two letters — inserting next to
+    # spaces or punctuation wouldn't break up any words
     eligible_indices = [i for i in range(1, len(chars)) 
                         if chars[i-1].isalpha() and chars[i].isalpha()]
     
@@ -155,6 +171,8 @@ def attack_char_insertion(text, intensity=0.15):
         return text
     
     n_insert = max(1, int(len(eligible_indices) * intensity))
+    # Sort in reverse order so that inserting characters doesn't shift
+    # the positions of characters that haven't been processed yet
     insert_indices = sorted(random.sample(eligible_indices, min(n_insert, len(eligible_indices))), 
                            reverse=True)  # Reverse to maintain index validity
     
@@ -168,7 +186,10 @@ def attack_char_insertion(text, intensity=0.15):
 # ============================================================
 # ATTACK 4: SYNONYM SUBSTITUTION
 # ============================================================
-# Key phishing words and their synonyms that preserve meaning
+# Replaces common phishing trigger words with synonyms (e.g. "verify"
+# becomes "confirm"). If a detector relies on specific keywords, this
+# could cause it to miss the phishing attempt. The most "natural"
+# attack since the message still reads normally.
 SYNONYM_MAP = {
     'verify': ['confirm', 'validate', 'authenticate', 'check'],
     'account': ['profile', 'membership', 'registration'],
@@ -206,6 +227,8 @@ def attack_synonym(text, intensity=0.5):
     words = text.split()
     eligible_indices = []
     
+    # Go through each word, strip punctuation, and check if it's
+    # one of the phishing keywords that has synonym replacements
     for i, word in enumerate(words):
         # Strip punctuation for matching
         clean_word = word.lower().strip('.,!?:;()[]{}"\'-')
@@ -215,6 +238,7 @@ def attack_synonym(text, intensity=0.5):
     if not eligible_indices:
         return text
     
+    # Pick a random subset of the matched words to replace
     n_replace = max(1, int(len(eligible_indices) * intensity))
     replace_items = random.sample(eligible_indices, min(n_replace, len(eligible_indices)))
     
@@ -223,12 +247,14 @@ def attack_synonym(text, intensity=0.5):
         synonym = random.choice(SYNONYM_MAP[clean_word])
         
         # Preserve capitalisation pattern
+        # e.g. if original was "Verify", synonym becomes "Confirm" (not "confirm")
         if original_word[0].isupper():
             synonym = synonym.capitalize()
         if original_word.isupper():
             synonym = synonym.upper()
         
         # Preserve trailing punctuation
+        # e.g. if original was "account!" the result should be "profile!" not just "profile"
         trailing = ''
         while original_word and not original_word[-1].isalpha():
             trailing = original_word[-1] + trailing
@@ -242,6 +268,9 @@ def attack_synonym(text, intensity=0.5):
 # ============================================================
 # ATTACK REGISTRY
 # ============================================================
+# Maps each attack name to its function, description, and intensity
+# levels. Intensities differ per attack — e.g. char_insertion uses
+# lower values (0.1-0.3) since too many invisible characters is unrealistic.
 ATTACKS = {
     'homoglyph': {
         'function': attack_homoglyph,
@@ -283,17 +312,17 @@ def evaluate_attack(detector, messages, labels, attack_name, attack_func, intens
     predictions_attacked = []
     
     for sms, true_label in zip(messages, labels):
-        # Classify original message
+        # Step 1: Classify the original (unmodified) message to get a baseline
         try:
             orig_result = detector.detect(sms)
             orig_pred = orig_result['classification']
         except Exception as e:
             orig_pred = 'unknown'
         
-        # Apply attack
+        # Step 2: Apply the attack to modify the message text
         attacked_sms = attack_func(sms, intensity=intensity)
         
-        # Classify attacked message
+        # Step 3: Classify the attacked (modified) message
         try:
             attack_result = detector.detect(attacked_sms)
             attack_pred = attack_result['classification']
@@ -303,16 +332,21 @@ def evaluate_attack(detector, messages, labels, attack_name, attack_func, intens
         predictions_original.append(orig_pred)
         predictions_attacked.append(attack_pred)
         
+        # Count up correct predictions for both original and attacked versions
         if orig_pred == true_label:
             original_correct += 1
         if attack_pred == true_label:
             attacked_correct += 1
+        # Track cases where the attack fooled the detector
+        # (got the original right but the attacked version wrong)
         if orig_pred == true_label and attack_pred != true_label:
             attack_evaded += 1
     
     n = len(messages)
     original_acc = original_correct / n if n > 0 else 0
     attacked_acc = attacked_correct / n if n > 0 else 0
+    # Evasion rate = what percentage of correctly-detected messages were
+    # flipped to incorrect by the attack (the key metric for robustness)
     evasion_rate = attack_evaded / original_correct if original_correct > 0 else 0
     
     return {
@@ -334,6 +368,7 @@ def print_attack_examples(messages, attack_func, intensity, n_examples=3):
     """Show examples of attack transformations."""
     print(f"\n  Example transformations (intensity={intensity}):")
     for i, sms in enumerate(messages[:n_examples]):
+        # Truncate long messages to 80 characters for readable output
         original = sms[:80] + ('...' if len(sms) > 80 else '')
         attacked = attack_func(sms, intensity=intensity)
         attacked_preview = attacked[:80] + ('...' if len(attacked) > 80 else '')
@@ -346,6 +381,8 @@ def print_attack_examples(messages, attack_func, intensity, n_examples=3):
 # MAIN
 # ============================================================
 def main():
+    # Set up command line arguments to control what gets tested
+    # without editing the code each time
     parser = argparse.ArgumentParser(description='Adversarial Robustness Testing')
     parser.add_argument('--attack', type=str, default='all',
                         choices=['all', 'homoglyph', 'leetspeak', 'char_insertion', 'synonym'],
@@ -357,7 +394,8 @@ def main():
                         help='Which dataset to use (default: corrected)')
     args = parser.parse_args()
     
-    # Load dataset
+    # Load the chosen dataset — defaults to corrected (the one with
+    # 97 mislabelled smishing messages fixed to spam)
     if args.dataset == 'corrected':
         dataset_path = 'data/dataset_corrected.csv'
     else:
@@ -368,11 +406,16 @@ def main():
         sys.exit(1)
     
     df = pd.read_csv(dataset_path)
+    # Normalise labels to lowercase and strip whitespace so matching works
     df['label'] = df['label'].str.strip().str.lower()
     
-    # Filter to smishing messages only (we test if attacks can evade detection)
+    # Only test on smishing messages — the point is to see if attacks
+    # can make the detector miss actual phishing attempts.
+    # Spam/legitimate aren't the safety-critical class.
     smishing_df = df[df['label'] == 'smishing'].copy()
     
+    # Optionally take a random sample if --n was specified
+    # (useful for quick tests without burning through the Groq API quota)
     if args.n:
         smishing_df = smishing_df.sample(n=min(args.n, len(smishing_df)), random_state=42)
     
@@ -386,7 +429,8 @@ def main():
     print(f"Smishing messages to test: {len(messages)}")
     print(f"Attack(s): {args.attack}")
     
-    # Initialise detector
+    # Set up the detector with the same config as the main evaluation:
+    # no context gathering (it was found to hurt accuracy) and two-pass enabled
     print("\nInitialising detector...")
     detector = SMSPhishingDetector(use_context=False, use_two_pass=True)
     
@@ -396,7 +440,7 @@ def main():
     else:
         attacks_to_run = [args.attack]
     
-    # Store all results
+    # Store all results to print a summary table at the end
     all_results = []
     
     for attack_name in attacks_to_run:
@@ -408,10 +452,12 @@ def main():
         print(f"Description: {attack_info['description']}")
         print("=" * 70)
         
-        # Show examples
+        # Show before/after examples of what the attack does to the text
+        # (uses the middle intensity level)
         print_attack_examples(messages, attack_func, attack_info['intensities'][1])
         
-        # Test each intensity level
+        # Test at each intensity level (e.g. 10%, 30%, 50%) to see how
+        # the detector holds up as attacks get more aggressive
         for intensity in attack_info['intensities']:
             print(f"  Testing intensity={intensity}...")
             result = evaluate_attack(detector, messages, labels, 
@@ -424,7 +470,7 @@ def main():
             print(f"    Evasion rate:      {result['evasion_rate']:.1%} "
                   f"({result['evaded_count']}/{result['original_correct']} correctly detected messages evaded)")
     
-    # Summary table
+    # Print a final summary table with all attacks and intensities side by side
     print("\n" + "=" * 70)
     print("SUMMARY: ADVERSARIAL ROBUSTNESS RESULTS")
     print("=" * 70)
@@ -435,8 +481,9 @@ def main():
         print(f"{r['attack']:<18} {r['intensity']:<12} {r['original_accuracy']:<12.1%} "
               f"{r['attacked_accuracy']:<12.1%} {r['accuracy_drop']:<10.1%} {r['evasion_rate']:<15.1%}")
     
-    # Save results
+    # Save results to JSON for dissertation tables/figures
     os.makedirs('outputs', exist_ok=True)
+    # Only save numeric results, not full prediction lists
     save_data = []
     for r in all_results:
         save_data.append({

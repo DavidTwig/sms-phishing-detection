@@ -4,10 +4,10 @@ Explore the SmishX dataset to understand its structure.
 
 import pandas as pd
 
-# Load the dataset
+# Load the original SmishX dataset (1,200 SMS messages)
 df = pd.read_csv('data/dataset.csv')
 
-# Basic info
+# Print basic dataset info — row count, column names, sample rows, data types
 print("=" * 50)
 print("SMISHX DATASET OVERVIEW")
 print("=" * 50)
@@ -21,7 +21,9 @@ print(df.head())
 print(f"\nData types:")
 print(df.dtypes)
 
-# Check for label distribution
+# Show the value counts for any text column with fewer than 10 unique values
+# In practice this picks up the 'label' column (legitimate/spam/smishing)
+# and any other categorical flags in the dataset
 print("\n" + "=" * 50)
 print("LABEL DISTRIBUTION")
 print("=" * 50)

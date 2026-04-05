@@ -12,7 +12,10 @@ import json
 DATASET_PATH = "data/dataset.csv"
 RESULTS_PATH = "outputs/evaluation_no_context.json"
 
-# Genuine smishing patterns (keep as smishing)
+# These 5 messages were flagged as smishing->spam by the model but
+# are actually genuine smishing (fake job offers impersonating companies).
+# They get excluded from relabelling — same list as in
+# create_corrected_dataset.py.
 GENUINE_SMISHING_PATTERNS = [
     "Michael Hendrix from OPN Architects",
     "Your CV has passed",
@@ -22,6 +25,7 @@ GENUINE_SMISHING_PATTERNS = [
     "you passed the interview"
 ]
 
+# Check if a message matches one of the 5 genuine smishing patterns
 def is_genuine_smishing(sms_text):
     text_lower = str(sms_text).lower()
     for pattern in GENUINE_SMISHING_PATTERNS:
@@ -29,7 +33,7 @@ def is_genuine_smishing(sms_text):
             return True
     return False
 
-# Load data
+# Load the original dataset and the model's predictions
 df = pd.read_csv(DATASET_PATH)
 df['label_clean'] = df['label'].str.strip().str.lower()
 
@@ -38,13 +42,16 @@ with open(RESULTS_PATH, 'r', encoding='utf-8') as f:
 
 df['predicted'] = results['predictions']
 
-# Find smishing predicted as spam
+# Find messages labelled smishing but predicted as spam
+# — these are the candidates that were relabelled in the corrected dataset
 smishing_as_spam = df[
     (df['label_clean'] == 'smishing') &
     (df['predicted'] == 'spam')
 ]
 
-# Split into relabelled vs kept
+# Separate into two groups:
+# - relabelled: changed from smishing to spam in the corrected dataset
+# - kept: the 5 genuine smishing messages that stay as smishing
 relabelled = []
 kept = []
 for idx, row in smishing_as_spam.iterrows():
@@ -58,6 +65,8 @@ print(f"Kept as smishing: {len(kept)}")
 print(f"Relabelled to spam: {len(relabelled)}")
 print("=" * 70)
 
+# Print each relabelled message with a blank VERDICT line
+# for manual review — same format as extract_smishing_spam.py
 for i, row in enumerate(relabelled, 1):
     sms = str(row['SMS'])
     print(f"[{i}/{len(relabelled)}]")

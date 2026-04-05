@@ -12,7 +12,7 @@ RESULTS_PATH = "outputs/evaluation_sample.json"
 DATASET_PATH = "data/dataset.csv"
 OUTPUT_PATH = "outputs/smishing_as_spam_audit.txt"
 
-# Load data
+# Load the evaluation predictions and the original dataset
 with open(RESULTS_PATH, 'r', encoding='utf-8') as f:
     results = json.load(f)
 
@@ -21,13 +21,18 @@ df['predicted'] = results['predictions']
 df['true_label'] = df['label'].str.lower().str.strip()
 df['predicted'] = df['predicted'].str.lower().str.strip()
 
-# Filter: true label is smishing, predicted as spam
+# Find messages the dataset says are smishing but the model predicted as spam.
+# These are the suspected mislabels — the manual audit checks whether the
+# dataset or the model is correct for each one.
 mask = (df['true_label'] == 'smishing') & (df['predicted'] == 'spam')
 errors = df[mask].copy()
 
 print(f"Found {len(errors)} smishing->spam misclassifications")
 
-# Write simple text file
+# Write a plain text file with each message and a blank VERDICT line
+# to fill in manually. The key question for each message is whether the
+# sender is impersonating a trusted entity (smishing) or just sending
+# unsolicited promotional content (spam).
 with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
     f.write(f"MANUAL AUDIT: {len(errors)} messages labelled SMISHING but predicted SPAM\n")
     f.write(f"Question for each: Is the sender IMPERSONATING a trusted entity?\n")
