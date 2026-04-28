@@ -31,7 +31,14 @@ def load_results(path):
         data = json.load(f)
 
     predictions = data['predictions']
-    confidences = data['confidences']
+    
+    if 'confidences_raw' in data:
+        confidences = data['confidences_raw']
+        print(f"Using raw (pre-Platt) confidences for calibration analysis")
+    else:
+        confidences = data['confidences']
+        print(f"WARNING: No confidences_raw field found")
+    
     true_labels = data['true_labels']
 
     print(f"Loaded {len(predictions)} predictions from {path}")
